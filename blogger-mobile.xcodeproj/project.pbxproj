@@ -1,0 +1,528 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E869594E1F57C1BB006418F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E869594D1F57C1BB006418F5 /* AppDelegate.swift */; };
+		E86959501F57C1BB006418F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E869594F1F57C1BB006418F5 /* ViewController.swift */; };
+		E86959531F57C1BB006418F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E86959511F57C1BB006418F5 /* Main.storyboard */; };
+		E86959551F57C1BB006418F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E86959541F57C1BB006418F5 /* Assets.xcassets */; };
+		E86959581F57C1BB006418F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E86959561F57C1BB006418F5 /* LaunchScreen.storyboard */; };
+		E86959631F57C1BB006418F5 /* blogger_mobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86959621F57C1BB006418F5 /* blogger_mobileTests.swift */; };
+		E869596E1F57C1BB006418F5 /* blogger_mobileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E869596D1F57C1BB006418F5 /* blogger_mobileUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E869595F1F57C1BB006418F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E86959421F57C1BB006418F5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E86959491F57C1BB006418F5;
+			remoteInfo = "blogger-mobile";
+		};
+		E869596A1F57C1BB006418F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E86959421F57C1BB006418F5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E86959491F57C1BB006418F5;
+			remoteInfo = "blogger-mobile";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E869594A1F57C1BB006418F5 /* blogger-mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "blogger-mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E869594D1F57C1BB006418F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E869594F1F57C1BB006418F5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E86959521F57C1BB006418F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E86959541F57C1BB006418F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E86959571F57C1BB006418F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E86959591F57C1BB006418F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E869595E1F57C1BB006418F5 /* blogger-mobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "blogger-mobileTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E86959621F57C1BB006418F5 /* blogger_mobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = blogger_mobileTests.swift; sourceTree = "<group>"; };
+		E86959641F57C1BB006418F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E86959691F57C1BB006418F5 /* blogger-mobileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "blogger-mobileUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E869596D1F57C1BB006418F5 /* blogger_mobileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = blogger_mobileUITests.swift; sourceTree = "<group>"; };
+		E869596F1F57C1BB006418F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E86959471F57C1BB006418F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E869595B1F57C1BB006418F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E86959661F57C1BB006418F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E86959411F57C1BB006418F5 = {
+			isa = PBXGroup;
+			children = (
+				E869594C1F57C1BB006418F5 /* blogger-mobile */,
+				E86959611F57C1BB006418F5 /* blogger-mobileTests */,
+				E869596C1F57C1BB006418F5 /* blogger-mobileUITests */,
+				E869594B1F57C1BB006418F5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E869594B1F57C1BB006418F5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E869594A1F57C1BB006418F5 /* blogger-mobile.app */,
+				E869595E1F57C1BB006418F5 /* blogger-mobileTests.xctest */,
+				E86959691F57C1BB006418F5 /* blogger-mobileUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E869594C1F57C1BB006418F5 /* blogger-mobile */ = {
+			isa = PBXGroup;
+			children = (
+				E869594D1F57C1BB006418F5 /* AppDelegate.swift */,
+				E869594F1F57C1BB006418F5 /* ViewController.swift */,
+				E86959511F57C1BB006418F5 /* Main.storyboard */,
+				E86959541F57C1BB006418F5 /* Assets.xcassets */,
+				E86959561F57C1BB006418F5 /* LaunchScreen.storyboard */,
+				E86959591F57C1BB006418F5 /* Info.plist */,
+			);
+			path = "blogger-mobile";
+			sourceTree = "<group>";
+		};
+		E86959611F57C1BB006418F5 /* blogger-mobileTests */ = {
+			isa = PBXGroup;
+			children = (
+				E86959621F57C1BB006418F5 /* blogger_mobileTests.swift */,
+				E86959641F57C1BB006418F5 /* Info.plist */,
+			);
+			path = "blogger-mobileTests";
+			sourceTree = "<group>";
+		};
+		E869596C1F57C1BB006418F5 /* blogger-mobileUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E869596D1F57C1BB006418F5 /* blogger_mobileUITests.swift */,
+				E869596F1F57C1BB006418F5 /* Info.plist */,
+			);
+			path = "blogger-mobileUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E86959491F57C1BB006418F5 /* blogger-mobile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E86959721F57C1BB006418F5 /* Build configuration list for PBXNativeTarget "blogger-mobile" */;
+			buildPhases = (
+				E86959461F57C1BB006418F5 /* Sources */,
+				E86959471F57C1BB006418F5 /* Frameworks */,
+				E86959481F57C1BB006418F5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "blogger-mobile";
+			productName = "blogger-mobile";
+			productReference = E869594A1F57C1BB006418F5 /* blogger-mobile.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E869595D1F57C1BB006418F5 /* blogger-mobileTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E86959751F57C1BB006418F5 /* Build configuration list for PBXNativeTarget "blogger-mobileTests" */;
+			buildPhases = (
+				E869595A1F57C1BB006418F5 /* Sources */,
+				E869595B1F57C1BB006418F5 /* Frameworks */,
+				E869595C1F57C1BB006418F5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E86959601F57C1BB006418F5 /* PBXTargetDependency */,
+			);
+			name = "blogger-mobileTests";
+			productName = "blogger-mobileTests";
+			productReference = E869595E1F57C1BB006418F5 /* blogger-mobileTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E86959681F57C1BB006418F5 /* blogger-mobileUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E86959781F57C1BB006418F5 /* Build configuration list for PBXNativeTarget "blogger-mobileUITests" */;
+			buildPhases = (
+				E86959651F57C1BB006418F5 /* Sources */,
+				E86959661F57C1BB006418F5 /* Frameworks */,
+				E86959671F57C1BB006418F5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E869596B1F57C1BB006418F5 /* PBXTargetDependency */,
+			);
+			name = "blogger-mobileUITests";
+			productName = "blogger-mobileUITests";
+			productReference = E86959691F57C1BB006418F5 /* blogger-mobileUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E86959421F57C1BB006418F5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = blogger_mobile;
+				TargetAttributes = {
+					E86959491F57C1BB006418F5 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
+					E869595D1F57C1BB006418F5 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E86959491F57C1BB006418F5;
+					};
+					E86959681F57C1BB006418F5 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E86959491F57C1BB006418F5;
+					};
+				};
+			};
+			buildConfigurationList = E86959451F57C1BB006418F5 /* Build configuration list for PBXProject "blogger-mobile" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E86959411F57C1BB006418F5;
+			productRefGroup = E869594B1F57C1BB006418F5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E86959491F57C1BB006418F5 /* blogger-mobile */,
+				E869595D1F57C1BB006418F5 /* blogger-mobileTests */,
+				E86959681F57C1BB006418F5 /* blogger-mobileUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E86959481F57C1BB006418F5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E86959581F57C1BB006418F5 /* LaunchScreen.storyboard in Resources */,
+				E86959551F57C1BB006418F5 /* Assets.xcassets in Resources */,
+				E86959531F57C1BB006418F5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E869595C1F57C1BB006418F5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E86959671F57C1BB006418F5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E86959461F57C1BB006418F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E86959501F57C1BB006418F5 /* ViewController.swift in Sources */,
+				E869594E1F57C1BB006418F5 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E869595A1F57C1BB006418F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E86959631F57C1BB006418F5 /* blogger_mobileTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E86959651F57C1BB006418F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E869596E1F57C1BB006418F5 /* blogger_mobileUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E86959601F57C1BB006418F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E86959491F57C1BB006418F5 /* blogger-mobile */;
+			targetProxy = E869595F1F57C1BB006418F5 /* PBXContainerItemProxy */;
+		};
+		E869596B1F57C1BB006418F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E86959491F57C1BB006418F5 /* blogger-mobile */;
+			targetProxy = E869596A1F57C1BB006418F5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E86959511F57C1BB006418F5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E86959521F57C1BB006418F5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E86959561F57C1BB006418F5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E86959571F57C1BB006418F5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E86959701F57C1BB006418F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E86959711F57C1BB006418F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E86959731F57C1BB006418F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "blogger-mobile/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "blogger.blogger-mobile";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		E86959741F57C1BB006418F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "blogger-mobile/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "blogger.blogger-mobile";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		E86959761F57C1BB006418F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "blogger-mobileTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "blogger.blogger-mobileTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/blogger-mobile.app/blogger-mobile";
+			};
+			name = Debug;
+		};
+		E86959771F57C1BB006418F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "blogger-mobileTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "blogger.blogger-mobileTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/blogger-mobile.app/blogger-mobile";
+			};
+			name = Release;
+		};
+		E86959791F57C1BB006418F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = "blogger-mobileUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "blogger.blogger-mobileUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "blogger-mobile";
+			};
+			name = Debug;
+		};
+		E869597A1F57C1BB006418F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = "blogger-mobileUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "blogger.blogger-mobileUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "blogger-mobile";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E86959451F57C1BB006418F5 /* Build configuration list for PBXProject "blogger-mobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E86959701F57C1BB006418F5 /* Debug */,
+				E86959711F57C1BB006418F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E86959721F57C1BB006418F5 /* Build configuration list for PBXNativeTarget "blogger-mobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E86959731F57C1BB006418F5 /* Debug */,
+				E86959741F57C1BB006418F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E86959751F57C1BB006418F5 /* Build configuration list for PBXNativeTarget "blogger-mobileTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E86959761F57C1BB006418F5 /* Debug */,
+				E86959771F57C1BB006418F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E86959781F57C1BB006418F5 /* Build configuration list for PBXNativeTarget "blogger-mobileUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E86959791F57C1BB006418F5 /* Debug */,
+				E869597A1F57C1BB006418F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E86959421F57C1BB006418F5 /* Project object */;
+}
