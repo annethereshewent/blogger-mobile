@@ -14,6 +14,8 @@
 		E86959581F57C1BB006418F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E86959561F57C1BB006418F5 /* LaunchScreen.storyboard */; };
 		E86959631F57C1BB006418F5 /* blogger_mobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86959621F57C1BB006418F5 /* blogger_mobileTests.swift */; };
 		E869596E1F57C1BB006418F5 /* blogger_mobileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E869596D1F57C1BB006418F5 /* blogger_mobileUITests.swift */; };
+		E8FA3203209ECF20007CF16C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA3202209ECF20007CF16C /* Post.swift */; };
+		E8FA320D209F650F007CF16C /* VerticalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA320B209F650F007CF16C /* VerticalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		E86959691F57C1BB006418F5 /* blogger-mobileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "blogger-mobileUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E869596D1F57C1BB006418F5 /* blogger_mobileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = blogger_mobileUITests.swift; sourceTree = "<group>"; };
 		E869596F1F57C1BB006418F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8FA3202209ECF20007CF16C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		E8FA320B209F650F007CF16C /* VerticalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				E86959541F57C1BB006418F5 /* Assets.xcassets */,
 				E86959561F57C1BB006418F5 /* LaunchScreen.storyboard */,
 				E86959591F57C1BB006418F5 /* Info.plist */,
+				E8FA3202209ECF20007CF16C /* Post.swift */,
+				E8FA320B209F650F007CF16C /* VerticalViewController.swift */,
 			);
 			path = "blogger-mobile";
 			sourceTree = "<group>";
@@ -259,8 +265,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8FA320D209F650F007CF16C /* VerticalViewController.swift in Sources */,
 				E86959501F57C1BB006418F5 /* ViewController.swift in Sources */,
 				E869594E1F57C1BB006418F5 /* AppDelegate.swift in Sources */,
+				E8FA3203209ECF20007CF16C /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +513,7 @@
 				E86959741F57C1BB006418F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E86959751F57C1BB006418F5 /* Build configuration list for PBXNativeTarget "blogger-mobileTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +522,7 @@
 				E86959771F57C1BB006418F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E86959781F57C1BB006418F5 /* Build configuration list for PBXNativeTarget "blogger-mobileUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +531,7 @@
 				E869597A1F57C1BB006418F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

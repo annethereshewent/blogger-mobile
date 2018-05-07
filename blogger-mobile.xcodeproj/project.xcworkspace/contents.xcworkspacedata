@@ -2,6 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:blogger-mobile.xcodeproj">
+      location = "group:../VerticalViewController.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/annecastrillon/Documents/ios_apps/blogger-mobile/blogger-mobile/blogger-mobile/VerticalViewController.xib">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/annecastrillon/Documents/ios_apps/blogger-mobile/blogger-mobile/blogger-mobile/VerticalViewController.swift">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
