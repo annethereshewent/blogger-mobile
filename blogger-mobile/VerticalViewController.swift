@@ -16,6 +16,7 @@ class VerticalViewController: UIViewController, UITableViewDelegate, UITableView
     
     var user: User? = nil
     var posts: [Post]? = nil
+    var password: String? = nil
     let url = "http://localhost:3000"
     
     let cellReuseIdentifier = "cell"
@@ -41,8 +42,13 @@ class VerticalViewController: UIViewController, UITableViewDelegate, UITableView
         self.insertImage.image = UIImage(named: "photo_upload")
         self.logOutImage.image = UIImage(named: "logout")
         
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(newPostTapped(tapGestureRecognizer:)))
+        
+        self.newPostImage.isUserInteractionEnabled = true
+        self.newPostImage.addGestureRecognizer(tapGestureRecognizer)
         // Do any additional setup after loading the view.
         if (self.posts != nil) {
+            print("posts are not nil, as should be expected")
 //            for post in self.posts! {
 //                print(post.post)
 //            }
@@ -52,12 +58,25 @@ class VerticalViewController: UIViewController, UITableViewDelegate, UITableView
             tableView.dataSource = self
         }
         else {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "ViewController")
-            
-            self.navigationController?.pushViewController(vc, animated: true)
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let vc = storyboard.instantiateViewController(withIdentifier: "ViewController")
+//
+//            self.navigationController?.pushViewController(vc, animated: true)
+            print("wtf why are posts nil")
         }
         
+        
+    }
+    
+    func newPostTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        //now transfer to new post view
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "NewPostController") as! NewPostViewController
+        
+        vc.user = self.user!
+        
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     
@@ -130,28 +149,13 @@ class VerticalViewController: UIViewController, UITableViewDelegate, UITableView
         cell.backgroundColor = UIColor.white
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 1
-        cell.layer.cornerRadius = 10
+        cell.layer.cornerRadius = 20
         cell.clipsToBounds = true
         
         return cell
     }
     
-//    func formatDate(date: String) -> String {
-//        let dateFormatterGet = DateFormatter()
-//        dateFormatterGet.dateFormat = "yyyy-dd-mm HH:mm:ss.z"
-//        let dateFormatterPrint = DateFormatter()
-//
-//        dateFormatterPrint.dateFormat = "MMM DD, yyyy"
-//
-//        if let formatted_date = dateFormatterGet.date(from: date) {
-//            return dateFormatterPrint.string(from: formatted_date)
-//        }
-//
-//        return ""
-//    }
-    
-    
-    
+
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // note that indexPath.section is used rather than indexPath.row

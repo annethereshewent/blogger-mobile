@@ -46,44 +46,50 @@ class ViewController: UIViewController {
             }
 
             var jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            let success = jsonData!!["success"] as! Bool
-            if (success) {
-                DispatchQueue.main.async {
-                    self.errorLabel.text = ""
+            
+            if (jsonData != nil) {
+                let success = jsonData!!["success"] as! Bool
+                if (success) {
+                    DispatchQueue.main.async {
+                        self.errorLabel.text = ""
+                    }
+                    
+                    print(jsonData!!)
+                    
+                    let user = User(json: jsonData!!)
+                    let _posts = jsonData!!["posts"] as? [Any]
+                    
+                    var posts = [] as! [Post]
+                    for post in _posts! {
+                        posts.append(Post(post: post as! [String : Any]))
+                    }
+                    
+                    //now switch the screens to another screen
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    
+                    let vc = storyboard.instantiateViewController(withIdentifier: "VerticalViewController") as! VerticalViewController
+                    
+                    vc.posts = posts
+                    vc.user = user
+                    
+                    
+                    DispatchQueue.main.async {
+                        self.activityIndicator.isHidden = true
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    
+                    
                 }
-                
-                print(jsonData!!)
-                
-                let user = User(json: jsonData!!)
-                let _posts = jsonData!!["posts"] as? [Any]
-                
-                var posts = [] as! [Post]
-                for post in _posts! {
-                    posts.append(Post(post: post as! [String : Any]))
+                else {
+                    DispatchQueue.main.async {
+                        self.errorLabel.text = "Wrong username or password."
+                        self.activityIndicator.isHidden = true
+                    }
                 }
-                
-                //now switch the screens to another screen
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                
-                let vc = storyboard.instantiateViewController(withIdentifier: "VerticalViewController") as! VerticalViewController
-                
-                vc.posts = posts
-                vc.user = user
-                
-                
-                DispatchQueue.main.async {
-                    self.activityIndicator.isHidden = true
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-                
-                
             }
             else {
-                DispatchQueue.main.async {
-                    self.errorLabel.text = "Wrong username or password."
-                }
+                print("An error has occurred.")
             }
-            
         }
         task.resume()
     }
@@ -91,15 +97,5 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-}
-
-class User {
-    var user_id: Int
-    var username: String
-    
-    init(json: [String: Any]) {
-        self.user_id = json["user_id"] as? Int ?? -1
-        self.username = json["username"] as? String ?? ""
     }
 }

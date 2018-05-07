@@ -16,6 +16,8 @@
 		E869596E1F57C1BB006418F5 /* blogger_mobileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E869596D1F57C1BB006418F5 /* blogger_mobileUITests.swift */; };
 		E8FA3203209ECF20007CF16C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA3202209ECF20007CF16C /* Post.swift */; };
 		E8FA320D209F650F007CF16C /* VerticalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA320B209F650F007CF16C /* VerticalViewController.swift */; };
+		E8FA3210209FE178007CF16C /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA320F209FE178007CF16C /* NewPostViewController.swift */; };
+		E8FA3212209FE980007CF16C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA3211209FE980007CF16C /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		E869596F1F57C1BB006418F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8FA3202209ECF20007CF16C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		E8FA320B209F650F007CF16C /* VerticalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalViewController.swift; sourceTree = "<group>"; };
+		E8FA320F209FE178007CF16C /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		E8FA3211209FE980007CF16C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,8 @@
 				E86959591F57C1BB006418F5 /* Info.plist */,
 				E8FA3202209ECF20007CF16C /* Post.swift */,
 				E8FA320B209F650F007CF16C /* VerticalViewController.swift */,
+				E8FA320F209FE178007CF16C /* NewPostViewController.swift */,
+				E8FA3211209FE980007CF16C /* User.swift */,
 			);
 			path = "blogger-mobile";
 			sourceTree = "<group>";
@@ -267,8 +273,10 @@
 			files = (
 				E8FA320D209F650F007CF16C /* VerticalViewController.swift in Sources */,
 				E86959501F57C1BB006418F5 /* ViewController.swift in Sources */,
+				E8FA3212209FE980007CF16C /* User.swift in Sources */,
 				E869594E1F57C1BB006418F5 /* AppDelegate.swift in Sources */,
 				E8FA3203209ECF20007CF16C /* Post.swift in Sources */,
+				E8FA3210209FE178007CF16C /* NewPostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
