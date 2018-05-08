@@ -14,6 +14,7 @@ class Post {
     var num_comments: Int
     var username: String
     var avatar: String
+    var images: [String]
     
     init(post: [String: Any]) {
         self.post = post["post"] as? String ?? ""
@@ -23,5 +24,6 @@ class Post {
         self.updated_at = post["updated_at"] as? String ?? ""
         self.username = post["username"] as? String ?? ""
         self.avatar = post["avatar"] as? String ?? ""
+        self.images = post["images"] as? [String] ?? []
     }
 }

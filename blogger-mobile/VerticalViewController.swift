@@ -125,6 +125,9 @@ class VerticalViewController: UIViewController, UITableViewDelegate, UITableView
         
         //add the date and number of comments to the post
         var html = "<p>\(self.posts![indexPath.section].created_at)</p>"
+        for image in self.posts![indexPath.section].images {
+            html += "<p><img src='\(self.url)/\(image)' width='200'></p>"
+        }
         html += self.posts![indexPath.section].post
         html += "<p style='font-size:12px'>\(self.posts![indexPath.section].num_comments) Comments</p>"
         html += self.posts![indexPath.section].edited ? "<p style='font-size:12px'><i>(Edited on \(self.posts![indexPath.section].updated_at)</i></p>" : ""
