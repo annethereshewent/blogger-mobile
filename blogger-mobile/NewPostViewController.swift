@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewPostViewController: UIViewController {
+class NewPostViewController: BaseController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var textView: UITextView!
     
@@ -16,6 +16,8 @@ class NewPostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         activityIndicator.isHidden = true
 
         // Do any additional setup after loading the view.
@@ -24,14 +26,14 @@ class NewPostViewController: UIViewController {
     @IBAction func newPostSubmit(_ sender: Any) {
         print("it worked! you submitted some text!")
         //now do a request with the token
-        let url = URL(string: "http://localhost:3000/api/create_post")!
+        let url = URL(string: "\(self.url)/api/create_post")!
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         
         let post = "<p>\(self.textView!.text!.replacingOccurrences(of: "\n", with: "<br>"))</p>"
         
-        let postParams = "token=\(self.user!.token)&post=\(post)&user_id=\(self.user!.user_id)"
+        let postParams = "token=\(self.user!.token)&post=\(post)"
         
         request.httpBody = postParams.data(using: .utf8)
         
@@ -49,10 +51,8 @@ class NewPostViewController: UIViewController {
                 print("response = \(response!)")
             }
             
-            var jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            
-            if (jsonData != nil) {
-                let success = jsonData!!["success"] as! Bool
+            if let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as! [String: Any] {
+                let success = jsonData["success"] as! Bool
                 if (success) {
                     print("success!")
                     
@@ -63,57 +63,18 @@ class NewPostViewController: UIViewController {
                     
                     vc.user = self.user!
                     
-                    let url = URL(string: "http://localhost:3000/api/fetch_posts?token=\(self.user!.token)&user_id=\(self.user!.user_id)")!
-                    var request = URLRequest(url: url)
-                    request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-                    request.httpMethod = "GET"
-                    let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                        guard let data = data, error == nil else {
-                            print("error=\(error!)")
-                            return
-                        }
+                    self.fetchPostJson(token: self.user!.token) { (json) in                        
+                        vc.posts = Post.parseJson(json_posts: json["posts"] as! [Any])
                         
-                        if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
-                            print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                            print("response = \(response!)")
-                        }
-                        
-                        var jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                        if (jsonData != nil) {
-                            let success = jsonData!!["success"] as! Bool
-                            
-                            if (success) {
-                                let _posts = jsonData!!["posts"] as? [Any]
-                                
-                                var posts: [Post] = []
-                                for post in _posts! {
-                                    posts.append(Post(post: post as! [String : Any]))
-                                }
-                                
-                                
-                                print("fetched posts was a success!")
-                                vc.posts = posts
-                                
-                                
-                                DispatchQueue.main.sync {
-                                    self.activityIndicator.stopAnimating()
-                                    self.navigationController?.pushViewController(vc, animated: true)
-                                }
-                                
-                            }
-                            else {
-                                print("an error has occurred")
-                            }
-                        }
-                        else {
-                            print("an error has occurred")
+                        DispatchQueue.main.sync {
+                            self.activityIndicator.stopAnimating()
+                            self.navigationController?.pushViewController(vc, animated: true)
                         }
                     }
-                    task.resume()
                 }
-                else {
-                    print("json data is nil for some reason :/")
-                }
+            }
+            else {
+                print("json data is nil for some reason :/")
             }
         }
         task.resume()

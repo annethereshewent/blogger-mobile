@@ -1,0 +1,6 @@
+framework module Pods_blogger_mobileTests {
+  umbrella header "Pods-blogger-mobileTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

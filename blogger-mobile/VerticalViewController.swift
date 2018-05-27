@@ -8,45 +8,72 @@
 
 import UIKit
 
-class VerticalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class VerticalViewController: BaseController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var newPostImage: UIImageView!
-    @IBOutlet weak var logOutImage: UIImageView!
-    @IBOutlet weak var insertImage: UIImageView!
+    @IBOutlet weak var newPostButton: UIButton!
+    @IBOutlet weak var insertImageButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var logoutButton: UIButton!
     
     var user: User? = nil
     var posts: [Post]? = nil
     var password: String? = nil
-    let url = "http://localhost:3000"
     
     let cellReuseIdentifier = "cell"
     let cellSpacingHeight: CGFloat = 20
     
     func htmlToFormattedText(html: String) -> NSAttributedString {
-        do {
-            let attrStr = try NSAttributedString(
-                data: html.data(using: String.Encoding.unicode, allowLossyConversion: true)!,
-                options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
-                documentAttributes: nil)
-            return attrStr;
-        } catch let error {
-            print(error)
-        }
+
+//        let attrStr = try NSAttributedString(
+//            data: html.data(using: String.Encoding.unicode, allowLossyConversion: true)!,
+//            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+//            documentAttributes: nil)
         
+        if let attrStr = try? NSAttributedString(data: Data(html.utf8), options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+            return attrStr
+        }
         return NSAttributedString()
+    }
+    
+    @IBAction func logoutAction(_ sender: Any) {
+        self.keychain["token"] = nil
+        self.user = nil
+        self.posts = nil
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "ViewController")
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    @IBAction func newPostAction(_ sender: Any) {
+        //now transfer to new post view
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "NewPostController") as! NewPostViewController
+        
+        vc.user = self.user!
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.newPostImage.image = UIImage(named: "new_post")
-        self.insertImage.image = UIImage(named: "photo_upload")
-        self.logOutImage.image = UIImage(named: "logout")
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(newPostTapped(tapGestureRecognizer:)))
-        
-        self.newPostImage.isUserInteractionEnabled = true
-        self.newPostImage.addGestureRecognizer(tapGestureRecognizer)
         // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTappedAround()
+        //self.navigationController?.setNavigationBarHidden(true, animated: false)
+
+        self.newPostButton.setBackgroundImage(UIImage(named: "new_post"), for: UIControlState.normal)
+        self.insertImageButton.setBackgroundImage(UIImage(named: "photo_upload"), for: UIControlState.normal)
+        self.settingsButton.setBackgroundImage(UIImage(named: "settings"), for: UIControlState.normal)
+        self.logoutButton.setBackgroundImage(UIImage(named: "logout"), for: UIControlState.normal)
+        
         if (self.posts != nil) {
             print("posts are not nil, as should be expected")
 //            for post in self.posts! {
@@ -65,18 +92,6 @@ class VerticalViewController: UIViewController, UITableViewDelegate, UITableView
             print("wtf why are posts nil")
         }
         
-        
-    }
-    
-    func newPostTapped(tapGestureRecognizer: UITapGestureRecognizer)
-    {
-        //now transfer to new post view
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "NewPostController") as! NewPostViewController
-        
-        vc.user = self.user!
-        
-        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     
@@ -126,17 +141,19 @@ class VerticalViewController: UIViewController, UITableViewDelegate, UITableView
         //add the date and number of comments to the post
         var html = "<p>\(self.posts![indexPath.section].created_at)</p>"
         for image in self.posts![indexPath.section].images {
-            html += "<p><img src='\(self.url)/\(image)' width='200'></p>"
+            html += "<p><img src='\(image)' width='200'></p>"
         }
         html += self.posts![indexPath.section].post
         html += "<p style='font-size:12px'>\(self.posts![indexPath.section].num_comments) Comments</p>"
         html += self.posts![indexPath.section].edited ? "<p style='font-size:12px'><i>(Edited on \(self.posts![indexPath.section].updated_at)</i></p>" : ""
         
         //get the avatar and display it now
-        let pictureURL = URL(string: self.url + "/" + self.posts![indexPath.section].avatar)
+        let pictureURL = URL(string: self.posts![indexPath.section].avatar)
         let pictureData = NSData(contentsOf: pictureURL! as URL)
-        let catPicture = UIImage(data: pictureData! as Data)
         
+        let catPicture = pictureData != nil ? UIImage(data: pictureData! as Data) : UIImage(named: "user_icon")
+        
+    
         cell.imageView?.layer.masksToBounds = true
         cell.imageView?.layer.cornerRadius = 40
         cell.imageView?.image = catPicture

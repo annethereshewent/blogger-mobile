@@ -1,0 +1,6 @@
+framework module Pods_blogger_mobile {
+  umbrella header "Pods-blogger-mobile-umbrella.h"
+
+  export *
+  module * { export * }
+}

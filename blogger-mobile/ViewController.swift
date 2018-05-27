@@ -8,22 +8,37 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: BaseController, UITextFieldDelegate {
     //MARK: Properties
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var userField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var submitButton: UIButton!
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        self.hideKeyboardWhenTappedAround()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    
+        passwordField.delegate = self
         activityIndicator.isHidden = true
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        submitButton.sendActions(for: .touchUpInside)
+        
+        return true
+    }
+    
     @IBAction func userSubmit(_ sender: Any) {
         //here's where we do an API request to get user data
-        let url = URL(string: "http://localhost:3000/api/login")!
+        let url = URL(string: "\(self.url)/api/login")!
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
@@ -45,24 +60,22 @@ class ViewController: UIViewController {
                 print("response = \(response!)")
             }
 
-            var jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            
-            if (jsonData != nil) {
-                let success = jsonData!!["success"] as! Bool
+            if let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as! [String: Any] {
+                let success = jsonData["success"] as! Bool
                 if (success) {
                     DispatchQueue.main.async {
                         self.errorLabel.text = ""
                     }
                     
-                    print(jsonData!!)
+                    print(jsonData)
                     
-                    let user = User(json: jsonData!!)
-                    let _posts = jsonData!!["posts"] as? [Any]
                     
-                    var posts = [] as! [Post]
-                    for post in _posts! {
-                        posts.append(Post(post: post as! [String : Any]))
-                    }
+                    
+                    let user = User(json: jsonData)
+                    
+                    self.keychain["token"] = user.token
+                    
+                    let posts = Post.parseJson(json_posts: jsonData["posts"] as! [Any])
                     
                     //now switch the screens to another screen
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -97,5 +110,18 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+}
+
+extension UIViewController {
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

@@ -6,6 +6,8 @@
 //  Copyright © 2018 blogger_mobile. All rights reserved.
 //
 
+import UIKit
+
 class Post {
     var post: String
     var created_at: String
@@ -25,5 +27,14 @@ class Post {
         self.username = post["username"] as? String ?? ""
         self.avatar = post["avatar"] as? String ?? ""
         self.images = post["images"] as? [String] ?? []
+    }
+    
+    static func parseJson(json_posts: [Any]) -> [Post] {
+        var posts = [] as! [Post]
+        for post in json_posts {
+            posts.append(Post(post: post as! [String : Any]))
+        }
+        
+        return posts
     }
 }
