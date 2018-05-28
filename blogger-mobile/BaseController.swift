@@ -10,41 +10,47 @@ import UIKit
 import KeychainAccess
 
 class BaseController: UIViewController {
+    //let url: String = "http://localhost:3000"
     let url: String = "https://blogger-243.herokuapp.com"
     let keychain = Keychain(server: "https://github.com", protocolType: .https)
     
     
-    func fetchPostJson(token: String, completionBlock: @escaping ([String: Any]) -> Void) -> Void {
-        let url = URL(string: "\(self.url)/api/fetch_posts?token=\(token)")!
-        var request = URLRequest(url: url)
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "GET"
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print("error=\(error!)")
-                return
-            }
+    func fetchPostJson(token: String, callback: @escaping ([String: Any]) -> Void) -> Void {
+        let url = "\(self.url)/api/fetch_posts?token=\(token)"
+        Request.get(url) { (json) in
+            let success = json["success"] as! Bool
             
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
-                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response = \(response!)")
-            }
-            
-            if let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as! [String: Any] {
-                let success = jsonData["success"] as! Bool
-                
-                if (success) {
-                    completionBlock(jsonData)
-                }
-                else {
-                    print("an error has occurred")
-                }
+            if (success) {
+                callback(json)
             }
             else {
                 print("an error has occurred")
             }
         }
-        task.resume()
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 
+}
+
+extension String {
+    var htmlToAttributedString: NSAttributedString? {
+        guard let data = data(using: .unicode) else { return NSAttributedString() }
+        do {
+            return try NSAttributedString(data: data, options: [NSAttributedString.DocumentReadingOptionKey.documentType:  NSAttributedString.DocumentType.html], documentAttributes: nil)
+        } catch {
+            return NSAttributedString()
+        }
+    }
+    var htmlToString: String {
+        return htmlToAttributedString?.string ?? ""
+    }
 }

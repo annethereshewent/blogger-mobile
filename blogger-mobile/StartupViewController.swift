@@ -19,13 +19,13 @@ class StartupViewController: BaseController {
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
         if let token = self.keychain["token"] {
-            print("the token is \(token)")
             self.fetchPostJson(token: token) { (json) in
                 let posts = Post.parseJson(json_posts: json["posts"] as! [Any])
                 let user = User(json: json)
-                
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                user.token = token
                 
                 let vc = storyboard.instantiateViewController(withIdentifier: "VerticalViewController") as! VerticalViewController
                 
@@ -38,8 +38,6 @@ class StartupViewController: BaseController {
             }
         }
         else {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
             let vc = storyboard.instantiateViewController(withIdentifier: "ViewController")
             
             self.navigationController?.pushViewController(vc, animated: true)

@@ -12,6 +12,8 @@
 		DC39706AC0E7AE7C2B406694 /* Pods_blogger_mobileTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E055E2764D29793AFBA6C09 /* Pods_blogger_mobileTests.framework */; };
 		E81D2E2220BA4BC80081C1B8 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81D2E2120BA4BC80081C1B8 /* BaseController.swift */; };
 		E857751B20BA626700B32ACE /* StartupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857751A20BA626700B32ACE /* StartupViewController.swift */; };
+		E857751D20BB0A2C00B32ACE /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857751C20BB0A2C00B32ACE /* Request.swift */; };
+		E857751F20BB895D00B32ACE /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857751E20BB895D00B32ACE /* RegisterController.swift */; };
 		E869594E1F57C1BB006418F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E869594D1F57C1BB006418F5 /* AppDelegate.swift */; };
 		E86959501F57C1BB006418F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E869594F1F57C1BB006418F5 /* ViewController.swift */; };
 		E86959531F57C1BB006418F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E86959511F57C1BB006418F5 /* Main.storyboard */; };
@@ -54,6 +56,8 @@
 		D23D2881B8A95C2D66B498F9 /* Pods-blogger-mobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blogger-mobileTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-blogger-mobileTests/Pods-blogger-mobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		E81D2E2120BA4BC80081C1B8 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		E857751A20BA626700B32ACE /* StartupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupViewController.swift; sourceTree = "<group>"; };
+		E857751C20BB0A2C00B32ACE /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		E857751E20BB895D00B32ACE /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		E869594A1F57C1BB006418F5 /* blogger-mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "blogger-mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E869594D1F57C1BB006418F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E869594F1F57C1BB006418F5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 				E8FA3211209FE980007CF16C /* User.swift */,
 				E81D2E2120BA4BC80081C1B8 /* BaseController.swift */,
 				E857751A20BA626700B32ACE /* StartupViewController.swift */,
+				E857751C20BB0A2C00B32ACE /* Request.swift */,
+				E857751E20BB895D00B32ACE /* RegisterController.swift */,
 			);
 			path = "blogger-mobile";
 			sourceTree = "<group>";
@@ -365,10 +371,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-blogger-mobile/Pods-blogger-mobile-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -400,6 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E857751F20BB895D00B32ACE /* RegisterController.swift in Sources */,
 				E857751B20BA626700B32ACE /* StartupViewController.swift in Sources */,
 				E8FA320D209F650F007CF16C /* VerticalViewController.swift in Sources */,
 				E86959501F57C1BB006418F5 /* ViewController.swift in Sources */,
@@ -407,6 +418,7 @@
 				E8FA3212209FE980007CF16C /* User.swift in Sources */,
 				E869594E1F57C1BB006418F5 /* AppDelegate.swift in Sources */,
 				E8FA3203209ECF20007CF16C /* Post.swift in Sources */,
+				E857751D20BB0A2C00B32ACE /* Request.swift in Sources */,
 				E8FA3210209FE178007CF16C /* NewPostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -568,7 +580,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "blogger.blogger-mobile";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -586,7 +598,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "blogger.blogger-mobile";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

@@ -22,7 +22,7 @@ class VerticalViewController: BaseController, UITableViewDelegate, UITableViewDa
     let cellReuseIdentifier = "cell"
     let cellSpacingHeight: CGFloat = 20
     
-    func htmlToFormattedText(html: String) -> NSAttributedString {
+    func htmlToFormattedText(_ html: String) -> NSAttributedString {
 
 //        let attrStr = try NSAttributedString(
 //            data: html.data(using: String.Encoding.unicode, allowLossyConversion: true)!,
@@ -52,6 +52,8 @@ class VerticalViewController: BaseController, UITableViewDelegate, UITableViewDa
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "NewPostController") as! NewPostViewController
         
+        print("token: \(self.user!.token)")
+        
         vc.user = self.user!
         
         self.navigationController?.pushViewController(vc, animated: true)
@@ -76,19 +78,12 @@ class VerticalViewController: BaseController, UITableViewDelegate, UITableViewDa
         
         if (self.posts != nil) {
             print("posts are not nil, as should be expected")
-//            for post in self.posts! {
-//                print(post.post)
-//            }
             
             self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
             tableView.delegate = self
             tableView.dataSource = self
         }
         else {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let vc = storyboard.instantiateViewController(withIdentifier: "ViewController")
-//
-//            self.navigationController?.pushViewController(vc, animated: true)
             print("wtf why are posts nil")
         }
         
@@ -134,7 +129,7 @@ class VerticalViewController: BaseController, UITableViewDelegate, UITableViewDa
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell:UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
+        let cell:UITableViewCell = (self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell?)!
         
         // note that indexPath.section is used rather than indexPath.row
         
@@ -149,19 +144,24 @@ class VerticalViewController: BaseController, UITableViewDelegate, UITableViewDa
         
         //get the avatar and display it now
         let pictureURL = URL(string: self.posts![indexPath.section].avatar)
-        let pictureData = NSData(contentsOf: pictureURL! as URL)
         
-        let catPicture = pictureData != nil ? UIImage(data: pictureData! as Data) : UIImage(named: "user_icon")
+        var catPicture: UIImage;
         
-    
+        if let pictureData = NSData(contentsOf: pictureURL! as URL) {
+            catPicture = UIImage(data: pictureData as Data)!
+            cell.imageView?.layer.cornerRadius = 40
+        }
+        else {
+            catPicture = UIImage(named: "user_icon")!
+        }
+        
         cell.imageView?.layer.masksToBounds = true
-        cell.imageView?.layer.cornerRadius = 40
         cell.imageView?.image = catPicture
         
         
         cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
         cell.textLabel?.numberOfLines = 0;
-        cell.textLabel?.attributedText = self.htmlToFormattedText(html: html)
+        cell.textLabel?.attributedText = html.htmlToAttributedString
         
         
         
@@ -176,11 +176,11 @@ class VerticalViewController: BaseController, UITableViewDelegate, UITableViewDa
     }
     
 
-    // method to run when table view cell is tapped
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // note that indexPath.section is used rather than indexPath.row
-        print("You tapped cell number \(indexPath.section).")
-    }
+//    // method to run when table view cell is tapped
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        // note that indexPath.section is used rather than indexPath.row
+//        print("You tapped cell number \(indexPath.section).")
+//    }
     
 }
 

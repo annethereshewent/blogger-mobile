@@ -26,58 +26,40 @@ class NewPostViewController: BaseController {
     @IBAction func newPostSubmit(_ sender: Any) {
         print("it worked! you submitted some text!")
         //now do a request with the token
-        let url = URL(string: "\(self.url)/api/create_post")!
-        var request = URLRequest(url: url)
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
+        let url = "\(self.url)/api/create_post"
         
         let post = "<p>\(self.textView!.text!.replacingOccurrences(of: "\n", with: "<br>"))</p>"
         
-        let postParams = "token=\(self.user!.token)&post=\(post)"
+        let postParams = [
+            "token": self.user!.token,
+            "post": post
+        ]
         
-        request.httpBody = postParams.data(using: .utf8)
-        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print("error=\(error!)")
-                return
-            }
+        Request.post(url, postParams) { (jsonData) in
+            let success = jsonData["success"] as! Bool
+
+            print(success ? "success!" : "failed to create post")
             
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
-                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response = \(response!)")
-            }
+            //go back to posts controller ("VerticalViewController")
             
-            if let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as! [String: Any] {
-                let success = jsonData["success"] as! Bool
-                if (success) {
-                    print("success!")
-                    
-                    //go back to posts controller ("VerticailViewController")
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    
-                    let vc = storyboard.instantiateViewController(withIdentifier: "VerticalViewController") as! VerticalViewController
-                    
-                    vc.user = self.user!
-                    
-                    self.fetchPostJson(token: self.user!.token) { (json) in                        
-                        vc.posts = Post.parseJson(json_posts: json["posts"] as! [Any])
-                        
-                        DispatchQueue.main.sync {
-                            self.activityIndicator.stopAnimating()
-                            self.navigationController?.pushViewController(vc, animated: true)
-                        }
-                    }
+            let vc = storyboard.instantiateViewController(withIdentifier: "VerticalViewController") as! VerticalViewController
+            
+            vc.user = self.user!
+            
+            self.fetchPostJson(token: self.user!.token) { (json) in
+                vc.posts = Post.parseJson(json_posts: json["posts"] as! [Any])
+                
+                DispatchQueue.main.sync {
+                    self.activityIndicator.stopAnimating()
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
-            else {
-                print("json data is nil for some reason :/")
-            }
+            
         }
-        task.resume()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

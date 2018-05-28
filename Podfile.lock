@@ -1,16 +1,24 @@
 PODS:
   - KeychainAccess (3.1.1)
+  - Socket.IO-Client-Swift (13.2.0):
+    - Starscream (~> 3.0.2)
+  - Starscream (3.0.5)
 
 DEPENDENCIES:
   - KeychainAccess
+  - Socket.IO-Client-Swift (~> 13.2.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - KeychainAccess
+    - Socket.IO-Client-Swift
+    - Starscream
 
 SPEC CHECKSUMS:
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
+  Socket.IO-Client-Swift: 4698ea9eb2955eecf7fdf06c487ff1597e4cd779
+  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
 
-PODFILE CHECKSUM: 0b93584f54378c650b28478ad82ce01530b9d60e
+PODFILE CHECKSUM: 6380ae37e844e364514e3740116546b3fb0f94d1
 
 COCOAPODS: 1.5.3

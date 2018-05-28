@@ -6,8 +6,6 @@
 //  Copyright © 2018 blogger_mobile. All rights reserved.
 //
 
-import UIKit
-
 class Post {
     var post: String
     var created_at: String
