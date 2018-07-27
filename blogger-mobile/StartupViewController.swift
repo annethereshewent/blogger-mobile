@@ -20,21 +20,38 @@ class StartupViewController: BaseController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
         if let token = self.keychain["token"] {
             self.fetchPostJson(token: token) { (json) in
-                let posts = Post.parseJson(json_posts: json["posts"] as! [Any])
-                let user = User(json: json)
-                user.token = token
-                
-                let vc = storyboard.instantiateViewController(withIdentifier: "VerticalViewController") as! VerticalViewController
-                
-                vc.posts = posts
-                vc.user = user
-                
-                DispatchQueue.main.async {
-                    self.navigationController?.pushViewController(vc, animated: true)
+                let success = json["success"] as! Bool
+                if (success) {
+                    let posts = Post.parseJson(json_posts: json["posts"] as! [Any])
+                    let user = User(json: json)
+                    user.token = token
+                    
+                    let vc = storyboard.instantiateViewController(withIdentifier: "VerticalViewController") as! VerticalViewController
+                    
+                    vc.posts = posts
+                    vc.user = user
+                    
+                    DispatchQueue.main.async {
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
                 }
+                else {
+                    if let message = json["message"] {
+                        print(message)
+                    }
+                    //something happened, probably an invalid token. redirect back to the login page and unset the token
+                    self.keychain["token"] = nil
+                    
+                    let vc = storyboard.instantiateViewController(withIdentifier: "ViewController")
+                    
+                    DispatchQueue.main.async {
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    
+                }
+                
             }
         }
         else {

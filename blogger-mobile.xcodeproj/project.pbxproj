@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0896FEB3D48E0B3E3F4DC787 /* Pods_blogger_mobileUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B166D1612895F931F43B749 /* Pods_blogger_mobileUITests.framework */; };
-		C530FFE7AF81F221FA237DF6 /* Pods_blogger_mobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1261FA52680B9C0B1A524D7A /* Pods_blogger_mobile.framework */; };
-		DC39706AC0E7AE7C2B406694 /* Pods_blogger_mobileTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E055E2764D29793AFBA6C09 /* Pods_blogger_mobileTests.framework */; };
+		224F5D8E66799FD2D6343CDE /* Pods_blogger_mobileTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C95A89298FC6F23B0EF5996 /* Pods_blogger_mobileTests.framework */; };
+		527729ED784DCABD9D465869 /* Pods_blogger_mobileUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EA56193A7CC7603FFE7F8EB /* Pods_blogger_mobileUITests.framework */; };
+		64EE24A1875D2C47F6D07CAB /* Pods_blogger_mobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5D240FA190C2CA27C24A32 /* Pods_blogger_mobile.framework */; };
 		E81D2E2220BA4BC80081C1B8 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81D2E2120BA4BC80081C1B8 /* BaseController.swift */; };
+		E84FCC11210564F1009693DB /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FCC10210564F1009693DB /* ChatListViewController.swift */; };
+		E84FCC1321057ABB009693DB /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FCC1221057ABB009693DB /* Friend.swift */; };
+		E84FCC1521059E34009693DB /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FCC1421059E34009693DB /* ChatViewController.swift */; };
 		E857751B20BA626700B32ACE /* StartupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857751A20BA626700B32ACE /* StartupViewController.swift */; };
 		E857751D20BB0A2C00B32ACE /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857751C20BB0A2C00B32ACE /* Request.swift */; };
 		E857751F20BB895D00B32ACE /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857751E20BB895D00B32ACE /* RegisterController.swift */; };
@@ -45,16 +48,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0E6ED50702C57B23F2A29FD3 /* Pods-blogger-mobileUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blogger-mobileUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-blogger-mobileUITests/Pods-blogger-mobileUITests.release.xcconfig"; sourceTree = "<group>"; };
-		1261FA52680B9C0B1A524D7A /* Pods_blogger_mobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blogger_mobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		23C2747C7CFB4FE46D7D2E32 /* Pods-blogger-mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blogger-mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-blogger-mobile/Pods-blogger-mobile.debug.xcconfig"; sourceTree = "<group>"; };
-		3F3811E7C9BB364E59FE381B /* Pods-blogger-mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blogger-mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-blogger-mobile/Pods-blogger-mobile.release.xcconfig"; sourceTree = "<group>"; };
-		4615CA856BECC9107F2F5CF6 /* Pods-blogger-mobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blogger-mobileTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-blogger-mobileTests/Pods-blogger-mobileTests.debug.xcconfig"; sourceTree = "<group>"; };
-		7B166D1612895F931F43B749 /* Pods_blogger_mobileUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blogger_mobileUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9E055E2764D29793AFBA6C09 /* Pods_blogger_mobileTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blogger_mobileTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0BD11B7D0F625A6EB2D92D9 /* Pods-blogger-mobileUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blogger-mobileUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-blogger-mobileUITests/Pods-blogger-mobileUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		D23D2881B8A95C2D66B498F9 /* Pods-blogger-mobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blogger-mobileTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-blogger-mobileTests/Pods-blogger-mobileTests.release.xcconfig"; sourceTree = "<group>"; };
+		0EA56193A7CC7603FFE7F8EB /* Pods_blogger_mobileUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blogger_mobileUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C95A89298FC6F23B0EF5996 /* Pods_blogger_mobileTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blogger_mobileTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DFE6FEC0035F51A1009A0F9 /* Pods-blogger-mobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blogger-mobileTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-blogger-mobileTests/Pods-blogger-mobileTests.release.xcconfig"; sourceTree = "<group>"; };
+		4EB5267127C8369D5962D765 /* Pods-blogger-mobileUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blogger-mobileUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-blogger-mobileUITests/Pods-blogger-mobileUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5B5D240FA190C2CA27C24A32 /* Pods_blogger_mobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blogger_mobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		819E6623F60F576BE54108B1 /* Pods-blogger-mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blogger-mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-blogger-mobile/Pods-blogger-mobile.release.xcconfig"; sourceTree = "<group>"; };
+		97966C0097CBAAF75EAA1F8A /* Pods-blogger-mobileUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blogger-mobileUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-blogger-mobileUITests/Pods-blogger-mobileUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AFC655A03AAE55C3B1F6986E /* Pods-blogger-mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blogger-mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-blogger-mobile/Pods-blogger-mobile.debug.xcconfig"; sourceTree = "<group>"; };
 		E81D2E2120BA4BC80081C1B8 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
+		E84FCC10210564F1009693DB /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		E84FCC1221057ABB009693DB /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		E84FCC1421059E34009693DB /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		E857751A20BA626700B32ACE /* StartupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupViewController.swift; sourceTree = "<group>"; };
 		E857751C20BB0A2C00B32ACE /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		E857751E20BB895D00B32ACE /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
@@ -75,6 +80,7 @@
 		E8FA320B209F650F007CF16C /* VerticalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalViewController.swift; sourceTree = "<group>"; };
 		E8FA320F209FE178007CF16C /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		E8FA3211209FE980007CF16C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E91C4BC5B4246FC6E84CAA8D /* Pods-blogger-mobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blogger-mobileTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-blogger-mobileTests/Pods-blogger-mobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C530FFE7AF81F221FA237DF6 /* Pods_blogger_mobile.framework in Frameworks */,
+				64EE24A1875D2C47F6D07CAB /* Pods_blogger_mobile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC39706AC0E7AE7C2B406694 /* Pods_blogger_mobileTests.framework in Frameworks */,
+				224F5D8E66799FD2D6343CDE /* Pods_blogger_mobileTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,34 +104,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0896FEB3D48E0B3E3F4DC787 /* Pods_blogger_mobileUITests.framework in Frameworks */,
+				527729ED784DCABD9D465869 /* Pods_blogger_mobileUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		09A28E4A2221D6FEBDFC7C08 /* Frameworks */ = {
+		02D597690F9104B691648F65 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1261FA52680B9C0B1A524D7A /* Pods_blogger_mobile.framework */,
-				9E055E2764D29793AFBA6C09 /* Pods_blogger_mobileTests.framework */,
-				7B166D1612895F931F43B749 /* Pods_blogger_mobileUITests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3907E14C35D5FE2668B38968 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				23C2747C7CFB4FE46D7D2E32 /* Pods-blogger-mobile.debug.xcconfig */,
-				3F3811E7C9BB364E59FE381B /* Pods-blogger-mobile.release.xcconfig */,
-				4615CA856BECC9107F2F5CF6 /* Pods-blogger-mobileTests.debug.xcconfig */,
-				D23D2881B8A95C2D66B498F9 /* Pods-blogger-mobileTests.release.xcconfig */,
-				B0BD11B7D0F625A6EB2D92D9 /* Pods-blogger-mobileUITests.debug.xcconfig */,
-				0E6ED50702C57B23F2A29FD3 /* Pods-blogger-mobileUITests.release.xcconfig */,
+				AFC655A03AAE55C3B1F6986E /* Pods-blogger-mobile.debug.xcconfig */,
+				819E6623F60F576BE54108B1 /* Pods-blogger-mobile.release.xcconfig */,
+				E91C4BC5B4246FC6E84CAA8D /* Pods-blogger-mobileTests.debug.xcconfig */,
+				2DFE6FEC0035F51A1009A0F9 /* Pods-blogger-mobileTests.release.xcconfig */,
+				4EB5267127C8369D5962D765 /* Pods-blogger-mobileUITests.debug.xcconfig */,
+				97966C0097CBAAF75EAA1F8A /* Pods-blogger-mobileUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		BC19DFEC92DF4B1DEBBB3636 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B5D240FA190C2CA27C24A32 /* Pods_blogger_mobile.framework */,
+				1C95A89298FC6F23B0EF5996 /* Pods_blogger_mobileTests.framework */,
+				0EA56193A7CC7603FFE7F8EB /* Pods_blogger_mobileUITests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		E86959411F57C1BB006418F5 = {
@@ -135,8 +141,8 @@
 				E86959611F57C1BB006418F5 /* blogger-mobileTests */,
 				E869596C1F57C1BB006418F5 /* blogger-mobileUITests */,
 				E869594B1F57C1BB006418F5 /* Products */,
-				3907E14C35D5FE2668B38968 /* Pods */,
-				09A28E4A2221D6FEBDFC7C08 /* Frameworks */,
+				02D597690F9104B691648F65 /* Pods */,
+				BC19DFEC92DF4B1DEBBB3636 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -167,6 +173,9 @@
 				E857751A20BA626700B32ACE /* StartupViewController.swift */,
 				E857751C20BB0A2C00B32ACE /* Request.swift */,
 				E857751E20BB895D00B32ACE /* RegisterController.swift */,
+				E84FCC10210564F1009693DB /* ChatListViewController.swift */,
+				E84FCC1221057ABB009693DB /* Friend.swift */,
+				E84FCC1421059E34009693DB /* ChatViewController.swift */,
 			);
 			path = "blogger-mobile";
 			sourceTree = "<group>";
@@ -196,11 +205,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E86959721F57C1BB006418F5 /* Build configuration list for PBXNativeTarget "blogger-mobile" */;
 			buildPhases = (
-				3EDB0333D90490374C2B090B /* [CP] Check Pods Manifest.lock */,
+				0EB86533055E908B4338B5D2 /* [CP] Check Pods Manifest.lock */,
 				E86959461F57C1BB006418F5 /* Sources */,
 				E86959471F57C1BB006418F5 /* Frameworks */,
 				E86959481F57C1BB006418F5 /* Resources */,
-				600F352045E8DF5BCFD11757 /* [CP] Embed Pods Frameworks */,
+				6F8C9F96F9EBD24E8017D5F4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -215,7 +224,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E86959751F57C1BB006418F5 /* Build configuration list for PBXNativeTarget "blogger-mobileTests" */;
 			buildPhases = (
-				0FA04EDC3BD229AC2E8E73CC /* [CP] Check Pods Manifest.lock */,
+				FAA6A64243B6369607B74E5D /* [CP] Check Pods Manifest.lock */,
 				E869595A1F57C1BB006418F5 /* Sources */,
 				E869595B1F57C1BB006418F5 /* Frameworks */,
 				E869595C1F57C1BB006418F5 /* Resources */,
@@ -234,7 +243,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E86959781F57C1BB006418F5 /* Build configuration list for PBXNativeTarget "blogger-mobileUITests" */;
 			buildPhases = (
-				FCDD0EED087D63BF3A05AFC9 /* [CP] Check Pods Manifest.lock */,
+				90BEC363CA6BDDF64EADB58F /* [CP] Check Pods Manifest.lock */,
 				E86959651F57C1BB006418F5 /* Sources */,
 				E86959661F57C1BB006418F5 /* Frameworks */,
 				E86959671F57C1BB006418F5 /* Resources */,
@@ -327,25 +336,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0FA04EDC3BD229AC2E8E73CC /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-blogger-mobileTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3EDB0333D90490374C2B090B /* [CP] Check Pods Manifest.lock */ = {
+		0EB86533055E908B4338B5D2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -363,29 +354,35 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		600F352045E8DF5BCFD11757 /* [CP] Embed Pods Frameworks */ = {
+		6F8C9F96F9EBD24E8017D5F4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-blogger-mobile/Pods-blogger-mobile-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-blogger-mobile/Pods-blogger-mobile-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FCDD0EED087D63BF3A05AFC9 /* [CP] Check Pods Manifest.lock */ = {
+		90BEC363CA6BDDF64EADB58F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -403,6 +400,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FAA6A64243B6369607B74E5D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-blogger-mobileTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -412,11 +427,14 @@
 			files = (
 				E857751F20BB895D00B32ACE /* RegisterController.swift in Sources */,
 				E857751B20BA626700B32ACE /* StartupViewController.swift in Sources */,
+				E84FCC11210564F1009693DB /* ChatListViewController.swift in Sources */,
+				E84FCC1321057ABB009693DB /* Friend.swift in Sources */,
 				E8FA320D209F650F007CF16C /* VerticalViewController.swift in Sources */,
 				E86959501F57C1BB006418F5 /* ViewController.swift in Sources */,
 				E81D2E2220BA4BC80081C1B8 /* BaseController.swift in Sources */,
 				E8FA3212209FE980007CF16C /* User.swift in Sources */,
 				E869594E1F57C1BB006418F5 /* AppDelegate.swift in Sources */,
+				E84FCC1521059E34009693DB /* ChatViewController.swift in Sources */,
 				E8FA3203209ECF20007CF16C /* Post.swift in Sources */,
 				E857751D20BB0A2C00B32ACE /* Request.swift in Sources */,
 				E8FA3210209FE178007CF16C /* NewPostViewController.swift in Sources */,
@@ -569,7 +587,7 @@
 		};
 		E86959731F57C1BB006418F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 23C2747C7CFB4FE46D7D2E32 /* Pods-blogger-mobile.debug.xcconfig */;
+			baseConfigurationReference = AFC655A03AAE55C3B1F6986E /* Pods-blogger-mobile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -587,7 +605,7 @@
 		};
 		E86959741F57C1BB006418F5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F3811E7C9BB364E59FE381B /* Pods-blogger-mobile.release.xcconfig */;
+			baseConfigurationReference = 819E6623F60F576BE54108B1 /* Pods-blogger-mobile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -605,7 +623,7 @@
 		};
 		E86959761F57C1BB006418F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4615CA856BECC9107F2F5CF6 /* Pods-blogger-mobileTests.debug.xcconfig */;
+			baseConfigurationReference = E91C4BC5B4246FC6E84CAA8D /* Pods-blogger-mobileTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -621,7 +639,7 @@
 		};
 		E86959771F57C1BB006418F5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D23D2881B8A95C2D66B498F9 /* Pods-blogger-mobileTests.release.xcconfig */;
+			baseConfigurationReference = 2DFE6FEC0035F51A1009A0F9 /* Pods-blogger-mobileTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -637,7 +655,7 @@
 		};
 		E86959791F57C1BB006418F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0BD11B7D0F625A6EB2D92D9 /* Pods-blogger-mobileUITests.debug.xcconfig */;
+			baseConfigurationReference = 4EB5267127C8369D5962D765 /* Pods-blogger-mobileUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = "blogger-mobileUITests/Info.plist";
@@ -652,7 +670,7 @@
 		};
 		E869597A1F57C1BB006418F5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0E6ED50702C57B23F2A29FD3 /* Pods-blogger-mobileUITests.release.xcconfig */;
+			baseConfigurationReference = 97966C0097CBAAF75EAA1F8A /* Pods-blogger-mobileUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = "blogger-mobileUITests/Info.plist";

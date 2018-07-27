@@ -14,6 +14,7 @@ class VerticalViewController: BaseController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var insertImageButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var chatButton: UIButton!
     
     var user: User? = nil
     var posts: [Post]? = nil
@@ -35,6 +36,8 @@ class VerticalViewController: BaseController, UITableViewDelegate, UITableViewDa
         return NSAttributedString()
     }
     
+    
+    
     @IBAction func logoutAction(_ sender: Any) {
         self.keychain["token"] = nil
         self.user = nil
@@ -44,6 +47,17 @@ class VerticalViewController: BaseController, UITableViewDelegate, UITableViewDa
         let vc = storyboard.instantiateViewController(withIdentifier: "ViewController")
         
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func chatAction(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "ChatListViewController") as! ChatListViewController
+        
+        if let user = self.user {
+            vc.user = user
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
     }
     
     
@@ -69,12 +83,12 @@ class VerticalViewController: BaseController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.hideKeyboardWhenTappedAround()
-        //self.navigationController?.setNavigationBarHidden(true, animated: false)
 
         self.newPostButton.setBackgroundImage(UIImage(named: "new_post"), for: UIControlState.normal)
         self.insertImageButton.setBackgroundImage(UIImage(named: "photo_upload"), for: UIControlState.normal)
         self.settingsButton.setBackgroundImage(UIImage(named: "settings"), for: UIControlState.normal)
         self.logoutButton.setBackgroundImage(UIImage(named: "logout"), for: UIControlState.normal)
+        self.chatButton.setBackgroundImage(UIImage(named: "chat"), for: UIControlState.normal)
         
         if (self.posts != nil) {
             print("posts are not nil, as should be expected")

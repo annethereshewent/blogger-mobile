@@ -8,6 +8,9 @@ target 'blogger-mobile' do
   # Pods for blogger-mobile
   pod 'KeychainAccess'
   pod 'Socket.IO-Client-Swift', '~> 13.2.0'
+  pod 'JSQMessagesViewController'
+  pod 'SwiftSoup'
+  
   target 'blogger-mobileTests' do
     inherit! :search_paths
     # Pods for testing

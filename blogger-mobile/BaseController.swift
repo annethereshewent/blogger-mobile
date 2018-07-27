@@ -8,6 +8,7 @@
 
 import UIKit
 import KeychainAccess
+import JSQMessagesViewController
 
 class BaseController: UIViewController {
     //let url: String = "http://localhost:3000"
@@ -18,14 +19,7 @@ class BaseController: UIViewController {
     func fetchPostJson(token: String, callback: @escaping ([String: Any]) -> Void) -> Void {
         let url = "\(self.url)/api/fetch_posts?token=\(token)"
         Request.get(url) { (json) in
-            let success = json["success"] as! Bool
-            
-            if (success) {
-                callback(json)
-            }
-            else {
-                print("an error has occurred")
-            }
+            callback(json)
         }
     }
     

@@ -24,8 +24,7 @@ class Request {
     
     private static func request(_ url_str: String, _ methodType: String = "GET", _ postParams: [String: String] = [:], callback: @escaping ([String: Any]) -> Void) -> Void {
         
-        print("\(url_str) with postParams:")
-        print(postParams)
+        print("Making request at \(url_str)")
         
         let url = URL(string: url_str)!
         var request = URLRequest(url: url)
@@ -65,6 +64,12 @@ class Request {
             }
             else {
                 print("Could not parse json data")
+                callback(
+                    [
+                        "success": false,
+                        "message": "json_parse_fail"
+                    ]
+                )
             }
         }
         task.resume()

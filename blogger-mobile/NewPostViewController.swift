@@ -24,7 +24,6 @@ class NewPostViewController: BaseController {
     }
 
     @IBAction func newPostSubmit(_ sender: Any) {
-        print("it worked! you submitted some text!")
         //now do a request with the token
         let url = "\(self.url)/api/create_post"
         
@@ -51,12 +50,28 @@ class NewPostViewController: BaseController {
             vc.user = self.user!
             
             self.fetchPostJson(token: self.user!.token) { (json) in
-                vc.posts = Post.parseJson(json_posts: json["posts"] as! [Any])
-                
-                DispatchQueue.main.sync {
-                    self.activityIndicator.stopAnimating()
-                    self.navigationController?.pushViewController(vc, animated: true)
+                let success = json["success"] as! Bool
+                if (success) {
+                    vc.posts = Post.parseJson(json_posts: json["posts"] as! [Any])
+                    
+                    DispatchQueue.main.sync {
+                        self.activityIndicator.stopAnimating()
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
                 }
+                else {
+                    if let message = json["message"] as! String? {
+                        print(message)
+                        if (message == "invalid_token") {
+                            self.keychain["token"] = nil
+                            
+                            let vc = storyboard.instantiateViewController(withIdentifier: "ViewController")
+                            
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
+                    }
+                }
+                
             }
             
         }

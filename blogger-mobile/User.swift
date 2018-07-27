@@ -12,10 +12,12 @@ class User {
     var user_id: Int
     var username: String
     var token: String
+    var avatar: String
     
     init(json: [String: Any]) {
         self.user_id = json["user_id"] as? Int ?? -1
         self.username = json["username"] as? String ?? ""
         self.token = json["token"] as? String ?? ""
+        self.avatar = json["avatar"] as? String ?? ""
     }
 }

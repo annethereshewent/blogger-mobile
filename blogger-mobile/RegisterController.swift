@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterController: BaseController {
+class RegisterController: BaseController, UITextFieldDelegate {
 
     @IBOutlet weak var blogTitleField: UITextField!
     @IBOutlet weak var usernameField: UITextField!
@@ -36,6 +36,8 @@ class RegisterController: BaseController {
             errorLabel.text = "Password fields must match."
         }
         else {
+            errorLabel.text = ""
+            
             //register the user
             let postParams = [
                 "blog_title": blogTitleField.text!,
@@ -66,6 +68,13 @@ class RegisterController: BaseController {
                     }
                 }
                 else {
+                    if let message = json["message"] {
+                        print(message)
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self.errorLabel.text = "Unable to register user."
+                    }
                     print("could not register user.")
                 }
             }
@@ -77,8 +86,17 @@ class RegisterController: BaseController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.activityIndicator.isHidden = true
+        self.hideKeyboardWhenTappedAround()
+        self.navigationController?.isNavigationBarHidden = false
 
+        passwordField2.delegate = self
         // Do any additional setup after loading the view.
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        registerButton.sendActions(for: .touchUpInside)
+        return true
     }
 
     override func didReceiveMemoryWarning() {

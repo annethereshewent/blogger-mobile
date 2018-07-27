@@ -29,6 +29,11 @@ class ViewController: BaseController, UITextFieldDelegate {
         activityIndicator.isHidden = true
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         submitButton.sendActions(for: .touchUpInside)
@@ -85,6 +90,7 @@ class ViewController: BaseController, UITextFieldDelegate {
                 vc.user = user
                 
                 
+                print("test?")
                 DispatchQueue.main.async {
                     self.activityIndicator.isHidden = true
                     self.navigationController?.pushViewController(vc, animated: true)
