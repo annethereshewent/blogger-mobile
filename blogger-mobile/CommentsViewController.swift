@@ -90,7 +90,6 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         if tableView == self.commentsView {
             return self.comments.count
         }
-
         return 1
     }
     
@@ -133,7 +132,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
             
             cell.indentationLevel = self.comments[indexPath.section].indentLevel
             
-            var html = "<p><i>\(self.comments[indexPath.section].username)</i></p>"
+            var html = "<p><b>\(self.comments[indexPath.section].username)</b></p>"
 
             html += self.comments[indexPath.section].comment
 
@@ -141,14 +140,16 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
             cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
             cell.textLabel?.numberOfLines = 0;
             cell.textLabel?.attributedText = html.htmlToAttributedString
-            
-//            let button : UIButton = UIButton(type: UIButtonType.custom) as UIButton
-//            button.frame = CGRect(x: 40, y: 60, width: 100, height: 24)
-//            button.center = CGPoint(x: CGFloat(cell.indentationLevel) * cell.indentationWidth, y: 80.0)
-//            button.setTitle("Reply", for: UIControlState.normal)
-//            button.setTitleColor(UIColor.black, for: UIControlState.normal)
-//            button.titleLabel!.font = UIFont(name: button.titleLabel!.font.fontName, size: 10.0)
-//            cell.addSubview(button)
+   
+            /*
+            let button : UIButton = UIButton(type: UIButtonType.custom) as UIButton
+            button.frame = CGRect(x: 40, y: 60, width: 100, height: 24)
+            button.center = CGPoint(x: CGFloat(cell.indentationLevel) * cell.indentationWidth, y: 80.0)
+            button.setTitle("Reply", for: UIControlState.normal)
+            button.setTitleColor(UIColor.black, for: UIControlState.normal)
+            button.titleLabel!.font = UIFont(name: button.titleLabel!.font.fontName, size: 10.0)
+            cell.addSubview(button)
+            */
             
             // add border and color
             cell.backgroundColor = UIColor.white
@@ -156,15 +157,17 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
             cell.layer.borderWidth = 0
 
             cell.clipsToBounds = true
+        
+            /*
+            cell.username.attributedText = "<i>\(self.comments[indexPath.section].username)</i>".htmlToAttributedString
+
+            cell.comment.lineBreakMode = NSLineBreakMode.byWordWrapping
+            cell.comment.numberOfLines = 0
+            cell.comment.text = self.comments[indexPath.section].comment
+
+            print(cell.comment.bounds.height)
+            */
             
-//            cell.username.attributedText = "<i>\(self.comments[indexPath.section].username)</i>".htmlToAttributedString
-//
-//            cell.comment.lineBreakMode = NSLineBreakMode.byWordWrapping
-//            cell.comment.numberOfLines = 0
-//            cell.comment.text = self.comments[indexPath.section].comment
-//
-//            print(cell.comment.bounds.height)
-//
             return cell
         }
         else {
@@ -213,7 +216,9 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // note that indexPath.section is used rather than indexPath.row
-        
+//        print("you clicked on comment \(comments[indexPath.section].id)")
+//        let storyboard = UIStoryboard(name: "main", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "CommentsReplyController")
     }
 
 }
