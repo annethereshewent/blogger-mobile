@@ -9,8 +9,8 @@
 import KeychainAccess
 
 class BaseParams {
-    static let url: String = "http://localhost:3000"
-    //static let url: String = "https://blogger-243.herokuapp.com"
+    //static let url: String = "http://localhost:3000"
+    static let url: String = "https://blogger-243.herokuapp.com"
     static let keychain = Keychain(server: "https://github.com", protocolType: .https)
     
     static func fetchPostJson(token: String, callback: @escaping ([String: Any]) -> Void) -> Void {

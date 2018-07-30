@@ -153,13 +153,13 @@ class ChatListViewController: UITableViewController {
         cell.username.text = friend.username
         
 
-        let pictureURL = URL(string: friend.avatar)
+        let pictureURL = BaseParams.url == "http://localhost:3000" ? URL(string: "http://localhost:3000/\(friend.avatar)") : URL(string: friend.avatar)
 
         var catPicture: UIImage
 
         if let pictureData = NSData(contentsOf: pictureURL! as URL) {
             catPicture = UIImage(data: pictureData as Data)!
-            cell.avatar.layer.cornerRadius = 40
+            cell.avatar.layer.cornerRadius = 30
         }
         else {
             catPicture = UIImage(named: "user_icon")!
