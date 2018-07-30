@@ -16,8 +16,4 @@ class Friend {
         user_id = json["user_id"] as! Int
         avatar = json["avatar"] as! String
     }
-    
-    func isFriends(_ friend: Friend) -> Bool {
-        return true
-    }
 }

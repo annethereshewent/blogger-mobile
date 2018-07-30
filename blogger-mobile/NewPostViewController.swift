@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewPostViewController: BaseController {
+class NewPostViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var textView: UITextView!
     
@@ -25,7 +25,7 @@ class NewPostViewController: BaseController {
 
     @IBAction func newPostSubmit(_ sender: Any) {
         //now do a request with the token
-        let url = "\(self.url)/api/create_post"
+        let url = "\(BaseParams.url)/api/create_post"
         
         let post = "<p>\(self.textView!.text!.replacingOccurrences(of: "\n", with: "<br>"))</p>"
         
@@ -45,11 +45,11 @@ class NewPostViewController: BaseController {
             
             //go back to posts controller ("VerticalViewController")
             
-            let vc = storyboard.instantiateViewController(withIdentifier: "VerticalViewController") as! VerticalViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: "DashboardViewController") as! DashboardViewController
             
             vc.user = self.user!
-            
-            self.fetchPostJson(token: self.user!.token) { (json) in
+    
+            BaseParams.fetchPostJson(token: self.user!.token) { (json) in
                 let success = json["success"] as! Bool
                 if (success) {
                     vc.posts = Post.parseJson(json_posts: json["posts"] as! [Any])
@@ -63,7 +63,7 @@ class NewPostViewController: BaseController {
                     if let message = json["message"] as! String? {
                         print(message)
                         if (message == "invalid_token") {
-                            self.keychain["token"] = nil
+                            BaseParams.keychain["token"] = nil
                             
                             let vc = storyboard.instantiateViewController(withIdentifier: "ViewController")
                             

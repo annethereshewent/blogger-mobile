@@ -1,5 +1,5 @@
 //
-//  ChatViewController.swift
+//  ChatListViewController.swift
 //  blogger-mobile
 //
 //  Created by Anne Castrillon on 7/22/18.
@@ -9,73 +9,106 @@
 import UIKit
 import SocketIO
 
-class ChatListViewController: BaseController, UITableViewDelegate, UITableViewDataSource {
+struct UserSection: Comparable {
+    var char: String
+    var users: [Friend]
+    
+    static func < (lhs: UserSection, rhs: UserSection) -> Bool {
+        return lhs.char < rhs.char
+    }
+    
+    static func == (lhs: UserSection, rhs: UserSection) -> Bool {
+        return lhs.char == rhs.char
+    }
+}
+
+class ChatListViewController: UITableViewController {
     
     var user: User? = nil
     var friends: [Friend]? = nil
-    
+    var sections: [UserSection] = []
+    var socket: SocketIOClient! = nil
+
     let cellReuseIdentifier = "cell"
-    let cellSpacingHeight: CGFloat = 0
+    let cellSpacingHeight: CGFloat = 10
     let manager: SocketManager = SocketManager(socketURL: URL(string: "https://blogger243chat.herokuapp.com")!, config: [.log(true), .compress])
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.tableView.isHidden = true
-        self.activitySpinner.startAnimating()
-        activitySpinner.isHidden = false
         
         // Do any additional setup after loading the view.
         if let user = user {
-            let socket = manager.defaultSocket
+            socket = manager.defaultSocket
+            
             
             socket.on(clientEvent: .connect) {data, ack in
                 print("socket connected")
-                socket.emit("list")
+                self.socket.emit("login", ["username": user.username, "avatar": user.avatar])
+                self.socket.emit("list")
             }
             
             socket.on("list") { data, ack in
-                socket.emit("user-list", [
+                self.socket.emit("user-list", [
                     "username": user.username,
                     "avatar": user.avatar
                 ])
             }
             
-            socket.on("user-list") { user, ack in
-                //later on we will do stuff to indicate that the user is online.
+            socket.on("user-list") { data, ack in
+               
+                //first check if the user received is in our list of users
+                let user = data[0] as! [String: Any]
+                let username = user["username"] as! String
+                
+                print("user-list received for \(username)")
+                
+                let cells = self.tableView.visibleCells as! Array<UserTableViewCell>
+                for cell in cells {
+                    if cell.username.text == username {
+                        cell.status.image = UIImage(named: "online")
+                        break
+                    }
+                }
             }
-    
+            socket.on("logout") { data, ack in
+                let user = data[0] as! String
+                
+                let cells = self.tableView.visibleCells as! Array<UserTableViewCell>
+                for cell in cells {
+                    if cell.username.text == user {
+                        cell.status.image = nil
+                        break
+                    }
+                }
+            }
             
             socket.connect()
         
-            Request.get("\(self.url)/api/fetch_friends?token=\(user.token)") { (json) in
+            Request.get("\(BaseParams.url)/api/fetch_friends?token=\(user.token)") { (json) in
                 self.friends = []
                 for friend in json["friends"] as! [Any] {
                     self.friends!.append(Friend(json: friend as! [String: Any]))
                 }
+                
+                //next create the sections
 
-                print("received friends:")
-                for friend in self.friends! {
-                    print(friend)
+                let groups = Dictionary(grouping: self.friends!) { (friend) in
+                    return String(friend.username.prefix(1))
                 }
-
-
-
+                
+                self.sections = groups.map { args in
+                    return UserSection(char: args.0, users: args.1)
+                }.sorted()
+                
+                
                 DispatchQueue.main.async {
-                    self.tableView.isHidden = false
-                    self.activitySpinner.isHidden = true
-
                     self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: self.cellReuseIdentifier)
                     self.tableView.delegate = self
                     self.tableView.dataSource = self
 
                     self.tableView.reloadData()
-
-                    self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.top, animated: true)
                 }
 
             }
@@ -88,75 +121,80 @@ class ChatListViewController: BaseController, UITableViewDelegate, UITableViewDa
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    // MARK: - Table View delegate methods
+    // MARK: - Table View override methods
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return self.friends!.count
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return self.sections.count
     }
     
-    // There is just one row in every section
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let section = self.sections[section]
+
+        return section.char.uppercased()
     }
     
-    // Set the spacing between sections
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return cellSpacingHeight
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let section = self.sections[section]
+        return section.users.count
     }
     
-    // Make the background color show through
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = UIColor.clear
-        return headerView
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 75;//Choose your custom row height
     }
-    
-    // create a cell for each table view row
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        let cell:UserTableViewCell = (self.tableView.dequeueReusableCell(withIdentifier: "UserCell") as! UserTableViewCell?)!
         
-        let cell:UITableViewCell = (self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell?)!
+        let section = self.sections[indexPath.section]
+        let friend = section.users[indexPath.row]
         
-        cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
-        cell.textLabel?.numberOfLines = 0;
-        cell.textLabel?.text = self.friends![indexPath.section].username
+        cell.username.text = friend.username
         
-        let pictureURL = URL(string: self.friends![indexPath.section].avatar)
-    
+
+        let pictureURL = URL(string: friend.avatar)
+
         var catPicture: UIImage
-        
+
         if let pictureData = NSData(contentsOf: pictureURL! as URL) {
             catPicture = UIImage(data: pictureData as Data)!
-            cell.imageView?.layer.cornerRadius = 40
+            cell.avatar.layer.cornerRadius = 40
         }
         else {
             catPicture = UIImage(named: "user_icon")!
         }
-        
-        cell.imageView?.layer.masksToBounds = true
-        cell.imageView?.image = catPicture
-        
-        // add border and color
-        cell.backgroundColor = UIColor.lightGray
-        cell.layer.borderColor = UIColor.white.cgColor
-        cell.layer.borderWidth = 0
-        cell.clipsToBounds = true
-        
+
+        cell.avatar.layer.masksToBounds = true
+        cell.avatar.image = catPicture
+
         return cell
     }
     
     // method to run when table view cell is tapped
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // note that indexPath.section is used rather than indexPath.row
-        print("you tapped on friend:\(self.friends![indexPath.section].username)")
-        
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
         
         if let user = self.user {
             vc.user = user
-            vc.friend = self.friends![indexPath.section]
+            
+            let section = self.sections[indexPath.section]
+            vc.friend = section.users[indexPath.row]
+            vc.manager = self.manager
+            vc.socket = self.socket
             
             self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        
+        if parent == nil {
+            // The view is being removed from the stack, so call your function here
+            socket.disconnect()
         }
     }
     

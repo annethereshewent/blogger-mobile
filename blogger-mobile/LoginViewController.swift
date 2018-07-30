@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: BaseController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var errorLabel: UILabel!
@@ -54,7 +54,7 @@ class ViewController: BaseController, UITextFieldDelegate {
     
     @IBAction func userSubmit(_ sender: Any) {
         //here's where we do an API request to get user data
-        let url = "\(self.url)/api/login"
+        let url = "\(BaseParams.url)/api/login"
         
         let postParams = [
             "username": userField.text!,
@@ -77,14 +77,14 @@ class ViewController: BaseController, UITextFieldDelegate {
                 
                 let user = User(json: jsonData)
                 
-                self.keychain["token"] = user.token
+                BaseParams.keychain["token"] = user.token
                 
                 let posts = Post.parseJson(json_posts: jsonData["posts"] as! [Any])
                 
                 //now switch the screens to another screen
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 
-                let vc = storyboard.instantiateViewController(withIdentifier: "VerticalViewController") as! VerticalViewController
+                let vc = storyboard.instantiateViewController(withIdentifier: "DashboardViewController") as! DashboardViewController
                 
                 vc.posts = posts
                 vc.user = user

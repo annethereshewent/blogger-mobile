@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterController: BaseController, UITextFieldDelegate {
+class RegisterController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var blogTitleField: UITextField!
     @IBOutlet weak var usernameField: UITextField!
@@ -46,7 +46,7 @@ class RegisterController: BaseController, UITextFieldDelegate {
                 "password": passwordField.text!
             ]
             
-            let url = "\(self.url)/api/register"
+            let url = "\(BaseParams.url)/api/register"
             
             Request.post(url, postParams) { (json) in
                 print(json)
@@ -57,7 +57,7 @@ class RegisterController: BaseController, UITextFieldDelegate {
                     let posts: [Post] = []
                     
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let vc = storyboard.instantiateViewController(withIdentifier: "VerticalViewController") as! VerticalViewController
+                    let vc = storyboard.instantiateViewController(withIdentifier: "DashboardViewController") as! DashboardViewController
                     
                     vc.posts = posts
                     vc.user = user

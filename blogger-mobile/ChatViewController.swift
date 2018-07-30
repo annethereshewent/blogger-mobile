@@ -15,8 +15,8 @@ class ChatViewController: JSQMessagesViewController {
     
     var user: User? = nil
     var friend: Friend? = nil
-    let manager: SocketManager = SocketManager(socketURL: URL(string: "https://blogger243chat.herokuapp.com")!, config: [.log(true), .compress])
-    var socket: SocketIOClient!
+    var manager: SocketManager! = nil
+    var socket: SocketIOClient! = nil
     var messages = [JSQMessage]()
     
     lazy var outgoingBubble: JSQMessagesBubbleImage = {
@@ -118,16 +118,8 @@ class ChatViewController: JSQMessagesViewController {
             senderDisplayName = user.username
             
             //now load previous messages
-            
-            self.socket = self.manager.defaultSocket
-            
-            socket.on(clientEvent: .connect) { (data, ack) in
-                print("CONNECTION SUCCESSFUL")
-                if let friend = self.friend {
-                    self.socket.emit("login", ["username": user.username, "avatar": user.avatar])
-                    
-                    self.socket.emit("history_request", ["to": friend.username, "toid": friend.user_id, "from": user.username, "fromid": user.user_id])
-                }
+            if let friend = self.friend {
+                self.socket.emit("history_request", ["to": friend.username, "toid": friend.user_id, "from": user.username, "fromid": user.user_id])
             }
             
             socket.on("message") { (message, ack) in
@@ -158,7 +150,7 @@ class ChatViewController: JSQMessagesViewController {
                     let from = chat_log["from"] as! Int
                     var message = chat_log["message"] as! String
                     var image: JSQPhotoMediaItem = JSQPhotoMediaItem()
-                    var contains_image: Bool = false //we have to do this stupid shit instead of checking whether the image is nil because this language fucking sucks and doesn't let me set image to nil! FUCK YOU SWIFT
+                    var contains_image: Bool = false
                     
                     //we need to parse out images from these texts
                     if (message.range(of: "<img") != nil) {
@@ -201,8 +193,6 @@ class ChatViewController: JSQMessagesViewController {
                 
                 print("finished appending messages to messages array.")
             }
-            
-            socket.connect()
         }
     }
 }

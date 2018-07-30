@@ -10,7 +10,10 @@
 		224F5D8E66799FD2D6343CDE /* Pods_blogger_mobileTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C95A89298FC6F23B0EF5996 /* Pods_blogger_mobileTests.framework */; };
 		527729ED784DCABD9D465869 /* Pods_blogger_mobileUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EA56193A7CC7603FFE7F8EB /* Pods_blogger_mobileUITests.framework */; };
 		64EE24A1875D2C47F6D07CAB /* Pods_blogger_mobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5D240FA190C2CA27C24A32 /* Pods_blogger_mobile.framework */; };
-		E81D2E2220BA4BC80081C1B8 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81D2E2120BA4BC80081C1B8 /* BaseController.swift */; };
+		E81D2E2220BA4BC80081C1B8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81D2E2120BA4BC80081C1B8 /* Extensions.swift */; };
+		E8418C01210E5978002A22FF /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8418C00210E5978002A22FF /* CommentsViewController.swift */; };
+		E8418C03210E5A24002A22FF /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8418C02210E5A24002A22FF /* Comment.swift */; };
+		E8418C05210E8EEE002A22FF /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8418C04210E8EEE002A22FF /* CommentTableViewCell.swift */; };
 		E84FCC11210564F1009693DB /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FCC10210564F1009693DB /* ChatListViewController.swift */; };
 		E84FCC1321057ABB009693DB /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FCC1221057ABB009693DB /* Friend.swift */; };
 		E84FCC1521059E34009693DB /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84FCC1421059E34009693DB /* ChatViewController.swift */; };
@@ -18,14 +21,16 @@
 		E857751D20BB0A2C00B32ACE /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857751C20BB0A2C00B32ACE /* Request.swift */; };
 		E857751F20BB895D00B32ACE /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E857751E20BB895D00B32ACE /* RegisterController.swift */; };
 		E869594E1F57C1BB006418F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E869594D1F57C1BB006418F5 /* AppDelegate.swift */; };
-		E86959501F57C1BB006418F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E869594F1F57C1BB006418F5 /* ViewController.swift */; };
+		E86959501F57C1BB006418F5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E869594F1F57C1BB006418F5 /* LoginViewController.swift */; };
 		E86959531F57C1BB006418F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E86959511F57C1BB006418F5 /* Main.storyboard */; };
 		E86959551F57C1BB006418F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E86959541F57C1BB006418F5 /* Assets.xcassets */; };
 		E86959581F57C1BB006418F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E86959561F57C1BB006418F5 /* LaunchScreen.storyboard */; };
 		E86959631F57C1BB006418F5 /* blogger_mobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86959621F57C1BB006418F5 /* blogger_mobileTests.swift */; };
 		E869596E1F57C1BB006418F5 /* blogger_mobileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E869596D1F57C1BB006418F5 /* blogger_mobileUITests.swift */; };
+		E8E76610210ACF9900E061D3 /* BaseParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E7660F210ACF9900E061D3 /* BaseParams.swift */; };
+		E8E76612210ADAD900E061D3 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E76611210ADAD900E061D3 /* UserTableViewCell.swift */; };
 		E8FA3203209ECF20007CF16C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA3202209ECF20007CF16C /* Post.swift */; };
-		E8FA320D209F650F007CF16C /* VerticalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA320B209F650F007CF16C /* VerticalViewController.swift */; };
+		E8FA320D209F650F007CF16C /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA320B209F650F007CF16C /* DashboardViewController.swift */; };
 		E8FA3210209FE178007CF16C /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA320F209FE178007CF16C /* NewPostViewController.swift */; };
 		E8FA3212209FE980007CF16C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA3211209FE980007CF16C /* User.swift */; };
 /* End PBXBuildFile section */
@@ -56,7 +61,10 @@
 		819E6623F60F576BE54108B1 /* Pods-blogger-mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blogger-mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-blogger-mobile/Pods-blogger-mobile.release.xcconfig"; sourceTree = "<group>"; };
 		97966C0097CBAAF75EAA1F8A /* Pods-blogger-mobileUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blogger-mobileUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-blogger-mobileUITests/Pods-blogger-mobileUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AFC655A03AAE55C3B1F6986E /* Pods-blogger-mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blogger-mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-blogger-mobile/Pods-blogger-mobile.debug.xcconfig"; sourceTree = "<group>"; };
-		E81D2E2120BA4BC80081C1B8 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
+		E81D2E2120BA4BC80081C1B8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E8418C00210E5978002A22FF /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		E8418C02210E5A24002A22FF /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		E8418C04210E8EEE002A22FF /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		E84FCC10210564F1009693DB /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		E84FCC1221057ABB009693DB /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		E84FCC1421059E34009693DB /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -65,7 +73,7 @@
 		E857751E20BB895D00B32ACE /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		E869594A1F57C1BB006418F5 /* blogger-mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "blogger-mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E869594D1F57C1BB006418F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E869594F1F57C1BB006418F5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E869594F1F57C1BB006418F5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E86959521F57C1BB006418F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E86959541F57C1BB006418F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E86959571F57C1BB006418F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -76,8 +84,10 @@
 		E86959691F57C1BB006418F5 /* blogger-mobileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "blogger-mobileUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E869596D1F57C1BB006418F5 /* blogger_mobileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = blogger_mobileUITests.swift; sourceTree = "<group>"; };
 		E869596F1F57C1BB006418F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8E7660F210ACF9900E061D3 /* BaseParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseParams.swift; sourceTree = "<group>"; };
+		E8E76611210ADAD900E061D3 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		E8FA3202209ECF20007CF16C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		E8FA320B209F650F007CF16C /* VerticalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalViewController.swift; sourceTree = "<group>"; };
+		E8FA320B209F650F007CF16C /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		E8FA320F209FE178007CF16C /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		E8FA3211209FE980007CF16C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E91C4BC5B4246FC6E84CAA8D /* Pods-blogger-mobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blogger-mobileTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-blogger-mobileTests/Pods-blogger-mobileTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -160,22 +170,27 @@
 			isa = PBXGroup;
 			children = (
 				E869594D1F57C1BB006418F5 /* AppDelegate.swift */,
-				E869594F1F57C1BB006418F5 /* ViewController.swift */,
+				E869594F1F57C1BB006418F5 /* LoginViewController.swift */,
 				E86959511F57C1BB006418F5 /* Main.storyboard */,
 				E86959541F57C1BB006418F5 /* Assets.xcassets */,
 				E86959561F57C1BB006418F5 /* LaunchScreen.storyboard */,
 				E86959591F57C1BB006418F5 /* Info.plist */,
 				E8FA3202209ECF20007CF16C /* Post.swift */,
-				E8FA320B209F650F007CF16C /* VerticalViewController.swift */,
+				E8FA320B209F650F007CF16C /* DashboardViewController.swift */,
 				E8FA320F209FE178007CF16C /* NewPostViewController.swift */,
 				E8FA3211209FE980007CF16C /* User.swift */,
-				E81D2E2120BA4BC80081C1B8 /* BaseController.swift */,
+				E81D2E2120BA4BC80081C1B8 /* Extensions.swift */,
 				E857751A20BA626700B32ACE /* StartupViewController.swift */,
 				E857751C20BB0A2C00B32ACE /* Request.swift */,
 				E857751E20BB895D00B32ACE /* RegisterController.swift */,
 				E84FCC10210564F1009693DB /* ChatListViewController.swift */,
 				E84FCC1221057ABB009693DB /* Friend.swift */,
 				E84FCC1421059E34009693DB /* ChatViewController.swift */,
+				E8E7660F210ACF9900E061D3 /* BaseParams.swift */,
+				E8E76611210ADAD900E061D3 /* UserTableViewCell.swift */,
+				E8418C00210E5978002A22FF /* CommentsViewController.swift */,
+				E8418C02210E5A24002A22FF /* Comment.swift */,
+				E8418C04210E8EEE002A22FF /* CommentTableViewCell.swift */,
 			);
 			path = "blogger-mobile";
 			sourceTree = "<group>";
@@ -425,16 +440,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8E76612210ADAD900E061D3 /* UserTableViewCell.swift in Sources */,
 				E857751F20BB895D00B32ACE /* RegisterController.swift in Sources */,
 				E857751B20BA626700B32ACE /* StartupViewController.swift in Sources */,
 				E84FCC11210564F1009693DB /* ChatListViewController.swift in Sources */,
 				E84FCC1321057ABB009693DB /* Friend.swift in Sources */,
-				E8FA320D209F650F007CF16C /* VerticalViewController.swift in Sources */,
-				E86959501F57C1BB006418F5 /* ViewController.swift in Sources */,
-				E81D2E2220BA4BC80081C1B8 /* BaseController.swift in Sources */,
+				E8418C03210E5A24002A22FF /* Comment.swift in Sources */,
+				E8FA320D209F650F007CF16C /* DashboardViewController.swift in Sources */,
+				E86959501F57C1BB006418F5 /* LoginViewController.swift in Sources */,
+				E8E76610210ACF9900E061D3 /* BaseParams.swift in Sources */,
+				E81D2E2220BA4BC80081C1B8 /* Extensions.swift in Sources */,
 				E8FA3212209FE980007CF16C /* User.swift in Sources */,
 				E869594E1F57C1BB006418F5 /* AppDelegate.swift in Sources */,
 				E84FCC1521059E34009693DB /* ChatViewController.swift in Sources */,
+				E8418C05210E8EEE002A22FF /* CommentTableViewCell.swift in Sources */,
+				E8418C01210E5978002A22FF /* CommentsViewController.swift in Sources */,
 				E8FA3203209ECF20007CF16C /* Post.swift in Sources */,
 				E857751D20BB0A2C00B32ACE /* Request.swift in Sources */,
 				E8FA3210209FE178007CF16C /* NewPostViewController.swift in Sources */,

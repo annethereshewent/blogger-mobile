@@ -39,6 +39,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
+        self.disconnectSockets()
+    }
+    
+    func disconnectSockets() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let clvc = storyboard.instantiateViewController(withIdentifier: "ChatListViewController") as! ChatListViewController
+        
+        if let socket = clvc.socket {
+            socket.disconnect()
+        }
+        
+        let cvc = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+        
+        if let socket = cvc.socket {
+            socket.disconnect()
+        }
     }
 
 

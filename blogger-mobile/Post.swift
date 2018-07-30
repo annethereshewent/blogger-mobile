@@ -8,6 +8,7 @@
 
 class Post {
     var post: String
+    var id: Int
     var created_at: String
     var updated_at: String
     var edited: Bool
@@ -18,6 +19,7 @@ class Post {
     
     init(post: [String: Any]) {
         self.post = post["post"] as? String ?? ""
+        self.id = post["id"] as? Int ?? -1
         self.created_at = post["created_at"] as? String ?? ""
         self.edited = post["edited"] as? Bool ?? false
         self.num_comments = post["num_comments"] as? Int ?? 0

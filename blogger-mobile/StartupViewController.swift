@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StartupViewController: BaseController {
+class StartupViewController: UIViewController {
 
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     
@@ -20,15 +20,15 @@ class StartupViewController: BaseController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let token = self.keychain["token"] {
-            self.fetchPostJson(token: token) { (json) in
+        if let token = BaseParams.keychain["token"] {
+            BaseParams.fetchPostJson(token: token) { (json) in
                 let success = json["success"] as! Bool
                 if (success) {
                     let posts = Post.parseJson(json_posts: json["posts"] as! [Any])
                     let user = User(json: json)
                     user.token = token
                     
-                    let vc = storyboard.instantiateViewController(withIdentifier: "VerticalViewController") as! VerticalViewController
+                    let vc = storyboard.instantiateViewController(withIdentifier: "DashboardViewController") as! DashboardViewController
                     
                     vc.posts = posts
                     vc.user = user
@@ -42,9 +42,9 @@ class StartupViewController: BaseController {
                         print(message)
                     }
                     //something happened, probably an invalid token. redirect back to the login page and unset the token
-                    self.keychain["token"] = nil
+                    BaseParams.keychain["token"] = nil
                     
-                    let vc = storyboard.instantiateViewController(withIdentifier: "ViewController")
+                    let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
                     
                     DispatchQueue.main.async {
                         self.navigationController?.pushViewController(vc, animated: true)
@@ -55,7 +55,7 @@ class StartupViewController: BaseController {
             }
         }
         else {
-            let vc = storyboard.instantiateViewController(withIdentifier: "ViewController")
+            let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
             
             self.navigationController?.pushViewController(vc, animated: true)
         }

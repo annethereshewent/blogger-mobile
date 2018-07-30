@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VerticalViewController: BaseController, UITableViewDelegate, UITableViewDataSource {
+class DashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var newPostButton: UIButton!
     @IBOutlet weak var insertImageButton: UIButton!
@@ -39,12 +39,12 @@ class VerticalViewController: BaseController, UITableViewDelegate, UITableViewDa
     
     
     @IBAction func logoutAction(_ sender: Any) {
-        self.keychain["token"] = nil
+        BaseParams.keychain["token"] = nil
         self.user = nil
         self.posts = nil
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "ViewController")
+        let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
         
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -157,7 +157,7 @@ class VerticalViewController: BaseController, UITableViewDelegate, UITableViewDa
         html += self.posts![indexPath.section].edited ? "<p style='font-size:12px'><i>(Edited on \(self.posts![indexPath.section].updated_at)</i></p>" : ""
         
         //get the avatar and display it now
-        let pictureURL = URL(string: self.posts![indexPath.section].avatar)
+        let pictureURL = BaseParams.url == "http://localhost:3000" ? URL(string: "http://localhost:3000/\(self.posts![indexPath.section].avatar)") : URL(string: self.posts![indexPath.section].avatar)
         
         var catPicture: UIImage;
         
@@ -190,11 +190,18 @@ class VerticalViewController: BaseController, UITableViewDelegate, UITableViewDa
     }
     
 
-//    // method to run when table view cell is tapped
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        // note that indexPath.section is used rather than indexPath.row
-//        print("You tapped cell number \(indexPath.section).")
-//    }
+    // method to run when table view cell is tapped
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // note that indexPath.section is used rather than indexPath.row
+        print("You tapped cell number \(indexPath.section).")
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "CommentsViewController") as! CommentsViewController
+        
+        vc.post = self.posts![indexPath.section]
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
 }
 
