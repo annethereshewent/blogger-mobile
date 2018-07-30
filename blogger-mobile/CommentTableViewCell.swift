@@ -9,24 +9,22 @@
 import UIKit
 
 class CommentTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var comment: UILabel!
     
-    
-    @IBAction func replyAction(_ sender: Any) {
-        
-    }
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        self.indentationWidth = CGFloat(20)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
-
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.contentView.layoutMargins.left = CGFloat(self.indentationLevel) * self.indentationWidth
+        self.contentView.layoutIfNeeded()
+    }
 }

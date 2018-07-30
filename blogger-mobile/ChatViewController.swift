@@ -148,7 +148,7 @@ class ChatViewController: JSQMessagesViewController {
    
                 for chat_log in data["chat_logs"] as! [[String: Any]] {
                     let from = chat_log["from"] as! Int
-                    var message = chat_log["message"] as! String
+                    let message = chat_log["message"] as! String
                     var image: JSQPhotoMediaItem = JSQPhotoMediaItem()
                     var contains_image: Bool = false
                     

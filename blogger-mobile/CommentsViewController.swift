@@ -47,9 +47,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
                 if (success) {
                     var comments: [Comment] = []
                     for comment in json["comments"] as! [[String:Any]] {
-                        if comment != nil {
-                            comments.append(Comment(comment))
-                        }
+                        comments.append(Comment(comment))
                     }
                     
                     print("finished parsing comments. here they are: ")
@@ -95,11 +93,11 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
 
         return 1
     }
-//
+    
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
 //    {
 //        if (tableView == self.commentsView) {
-//            return 100;//Choose your custom row height
+//            return 100;
 //        }
 //
 //        return 150
@@ -129,20 +127,28 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
 
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell;
         if (tableView == self.commentsView) {
-            cell = (self.commentsView.dequeueReusableCell(withIdentifier: "cell"))!
+            //let cell = (self.commentsView.dequeueReusableCell(withIdentifier: "CommentCell") as! CommentTableViewCell)
+            let cell = (self.postView.dequeueReusableCell(withIdentifier: "cell") as UITableViewCell?)!
             
-            print("Indent level for current comment: \(self.comments[indexPath.section].indentLevel)")
             cell.indentationLevel = self.comments[indexPath.section].indentLevel
             
             var html = "<p><i>\(self.comments[indexPath.section].username)</i></p>"
-            
+
             html += self.comments[indexPath.section].comment
-            
+
+
             cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
             cell.textLabel?.numberOfLines = 0;
             cell.textLabel?.attributedText = html.htmlToAttributedString
+            
+//            let button : UIButton = UIButton(type: UIButtonType.custom) as UIButton
+//            button.frame = CGRect(x: 40, y: 60, width: 100, height: 24)
+//            button.center = CGPoint(x: CGFloat(cell.indentationLevel) * cell.indentationWidth, y: 80.0)
+//            button.setTitle("Reply", for: UIControlState.normal)
+//            button.setTitleColor(UIColor.black, for: UIControlState.normal)
+//            button.titleLabel!.font = UIFont(name: button.titleLabel!.font.fontName, size: 10.0)
+//            cell.addSubview(button)
             
             // add border and color
             cell.backgroundColor = UIColor.white
@@ -151,6 +157,14 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
 
             cell.clipsToBounds = true
             
+//            cell.username.attributedText = "<i>\(self.comments[indexPath.section].username)</i>".htmlToAttributedString
+//
+//            cell.comment.lineBreakMode = NSLineBreakMode.byWordWrapping
+//            cell.comment.numberOfLines = 0
+//            cell.comment.text = self.comments[indexPath.section].comment
+//
+//            print(cell.comment.bounds.height)
+//
             return cell
         }
         else {
@@ -199,14 +213,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // note that indexPath.section is used rather than indexPath.row
-//        print("You tapped cell number \(indexPath.section).")
-//
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "CommentsViewController") as! CommentsViewController
-//
-//        vc.post = self.posts![indexPath.section]
-//
-//        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
 
 }
