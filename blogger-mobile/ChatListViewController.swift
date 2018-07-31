@@ -31,7 +31,7 @@ class ChatListViewController: UITableViewController {
 
     let cellReuseIdentifier = "cell"
     let cellSpacingHeight: CGFloat = 10
-    let manager: SocketManager = SocketManager(socketURL: URL(string: "https://blogger243chat.herokuapp.com")!, config: [.log(true), .compress])
+    let manager: SocketManager = SocketManager(socketURL: URL(string: BaseParams.chat_url)!, config: [.log(true), .compress])
     
     
     override func viewDidLoad() {

@@ -13,6 +13,9 @@ class BaseParams {
     //static let url: String = "https://blogger-243.herokuapp.com"
     static let keychain = Keychain(server: "https://github.com", protocolType: .https)
     
+    static let chat_url = "http://localhost:3001"
+    //static let chat_url = "https://blogger243chat.herokuapp.com"
+    
     static func fetchPostJson(token: String, callback: @escaping ([String: Any]) -> Void) -> Void {
         let url = "\(self.url)/api/fetch_posts?token=\(token)"
         Request.get(url) { (json) in

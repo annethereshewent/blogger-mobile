@@ -199,6 +199,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         let vc = storyboard.instantiateViewController(withIdentifier: "CommentsViewController") as! CommentsViewController
         
         vc.post = self.posts![indexPath.section]
+        vc.user = self.user
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

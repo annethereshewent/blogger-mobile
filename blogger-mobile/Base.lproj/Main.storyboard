@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -574,7 +575,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JtQ-Fe-px8">
-                                <rect key="frame" x="22" y="95" width="326" height="187"/>
+                                <rect key="frame" x="22" y="95" width="326" height="167"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -587,40 +588,59 @@
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="187" id="e7i-WK-gnI" customClass="CommentTableViewCell" customModule="blogger_mobile" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="187"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="141" id="e7i-WK-gnI" customClass="CommentTableViewCell" customModule="blogger_mobile" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="141"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e7i-WK-gnI" id="BqG-5R-pug">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="186.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="140.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="        " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOg-m3-iQE" userLabel="Username">
-                                                    <rect key="frame" x="15" y="11" width="313" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="        " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOg-m3-iQE" userLabel="Username">
+                                                    <rect key="frame" x="15" y="25" width="313" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="LnD-SB-o55"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyt-w6-ae8" userLabel="Comment">
-                                                    <rect key="frame" x="15" y="42" width="313" height="99"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyt-w6-ae8" userLabel="Comment">
+                                                    <rect key="frame" x="15" y="54" width="313" height="46"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nyk-SR-a3v">
-                                                    <rect key="frame" x="19" y="149" width="32" height="27"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nyk-SR-a3v">
+                                                    <rect key="frame" x="15" y="108" width="32" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="27" id="3ng-b3-qOh"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <state key="normal" title="Reply">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="replyAction:" destination="e7i-WK-gnI" eventType="touchUpInside" id="dZR-8P-T4f"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="kOg-m3-iQE" firstAttribute="centerX" secondItem="BqG-5R-pug" secondAttribute="centerX" id="1vv-D0-vwb"/>
+                                                <constraint firstItem="dyt-w6-ae8" firstAttribute="top" secondItem="kOg-m3-iQE" secondAttribute="bottom" constant="8" symbolic="YES" id="7Os-fE-lM1"/>
+                                                <constraint firstItem="kOg-m3-iQE" firstAttribute="leading" secondItem="BqG-5R-pug" secondAttribute="leadingMargin" id="9dX-Ae-ohJ"/>
+                                                <constraint firstItem="dyt-w6-ae8" firstAttribute="leading" secondItem="nyk-SR-a3v" secondAttribute="leading" id="FDH-Xt-P3Q"/>
+                                                <constraint firstItem="kOg-m3-iQE" firstAttribute="trailing" secondItem="dyt-w6-ae8" secondAttribute="trailing" id="Hel-F6-4iv"/>
+                                                <constraint firstItem="kOg-m3-iQE" firstAttribute="leading" secondItem="dyt-w6-ae8" secondAttribute="leading" id="MDW-o4-0dM"/>
+                                                <constraint firstItem="kOg-m3-iQE" firstAttribute="top" secondItem="BqG-5R-pug" secondAttribute="topMargin" constant="14" id="aZE-lV-olX"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="nyk-SR-a3v" secondAttribute="bottom" constant="-5" id="dTB-uJ-h7U"/>
+                                                <constraint firstItem="nyk-SR-a3v" firstAttribute="top" secondItem="dyt-w6-ae8" secondAttribute="bottom" constant="8" symbolic="YES" id="jNd-WU-7BO"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="comment" destination="dyt-w6-ae8" id="a4G-xR-fT3"/>
+                                            <outlet property="replyButton" destination="nyk-SR-a3v" id="Zcb-b9-SeU"/>
                                             <outlet property="username" destination="kOg-m3-iQE" id="Wie-87-ilb"/>
+                                            <outlet property="username_leading_constraint" destination="9dX-Ae-ohJ" id="qaZ-OA-mqJ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

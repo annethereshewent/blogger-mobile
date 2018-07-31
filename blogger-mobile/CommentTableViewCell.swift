@@ -12,7 +12,15 @@ class CommentTableViewCell: UITableViewCell {
     
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var comment: UILabel!
+    @IBOutlet weak var replyButton: UIButton!
+    @IBOutlet weak var username_leading_constraint: NSLayoutConstraint!
     
+    
+    
+    
+    @IBAction func replyAction(_ sender: Any) {
+        print("you clicked on the reply button for comment \(self.replyButton.tag)")
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -20,11 +28,5 @@ class CommentTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.contentView.layoutMargins.left = CGFloat(self.indentationLevel) * self.indentationWidth
-        self.contentView.layoutIfNeeded()
     }
 }
