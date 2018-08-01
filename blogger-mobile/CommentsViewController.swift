@@ -162,7 +162,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
             cell.clipsToBounds = true
         
             
-            cell.username.attributedText = "<i>\(self.comments[indexPath.row].username)</i>".htmlToAttributedString
+            cell.username.attributedText = "<b>\(self.comments[indexPath.row].username)</b>".htmlToAttributedString
 
             cell.comment.lineBreakMode = NSLineBreakMode.byWordWrapping
             cell.comment.numberOfLines = 0
@@ -175,7 +175,10 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
 //            cell.comment.frame.origin.x = cell.comment.frame.origin.x + (CGFloat(cell.indentationLevel)*cell.indentationWidth)
 //            cell.username.frame.origin.x = cell.username.frame.origin.x + (CGFloat(cell.indentationLevel)*cell.indentationWidth)
             cell.username_leading_constraint.constant = CGFloat(cell.indentationLevel)*cell.indentationWidth
+            
+            
             cell.replyButton.tag = self.comments[indexPath.row].id
+            cell.replyButton.addTarget(self, action: #selector(CommentsViewController.replyAction), for: .touchUpInside)
             
             
             let view = UIView()
@@ -229,6 +232,11 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
             
             
         }
+        
+    }
+    
+    @objc func replyAction(sender: UIButton) {
+        print("you clicked on the reply button for comment \(sender.tag)")
         
     }
     

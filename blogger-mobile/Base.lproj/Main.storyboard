@@ -619,9 +619,6 @@
                                                     <state key="normal" title="Reply">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="replyAction:" destination="e7i-WK-gnI" eventType="touchUpInside" id="dZR-8P-T4f"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

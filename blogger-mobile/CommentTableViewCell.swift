@@ -16,11 +16,6 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var username_leading_constraint: NSLayoutConstraint!
     
     
-    
-    
-    @IBAction func replyAction(_ sender: Any) {
-        print("you clicked on the reply button for comment \(self.replyButton.tag)")
-    }
     override func awakeFromNib() {
         super.awakeFromNib()
     }
