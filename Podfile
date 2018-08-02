@@ -10,6 +10,7 @@ target 'blogger-mobile' do
   pod 'Socket.IO-Client-Swift', '~> 13.2.0'
   pod 'JSQMessagesViewController'
   pod 'SwiftSoup'
+  pod 'IQKeyboardManagerSwift'
   
   target 'blogger-mobileTests' do
     inherit! :search_paths

@@ -1,4 +1,5 @@
 PODS:
+  - IQKeyboardManagerSwift (6.0.3)
   - JSQMessagesViewController (7.3.5):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
@@ -9,6 +10,7 @@ PODS:
   - SwiftSoup (1.7.1)
 
 DEPENDENCIES:
+  - IQKeyboardManagerSwift
   - JSQMessagesViewController
   - KeychainAccess
   - Socket.IO-Client-Swift (~> 13.2.0)
@@ -16,6 +18,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - IQKeyboardManagerSwift
     - JSQMessagesViewController
     - JSQSystemSoundPlayer
     - KeychainAccess
@@ -24,6 +27,7 @@ SPEC REPOS:
     - SwiftSoup
 
 SPEC CHECKSUMS:
+  IQKeyboardManagerSwift: 04e8679f85e496bb2c474eeb9284052f1b3c391c
   JSQMessagesViewController: 6587f56aedbcb150a8ba1d968e1ef58b1bc758b7
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
@@ -31,6 +35,6 @@ SPEC CHECKSUMS:
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
   SwiftSoup: 277f7ef548826e0ca7603a06b30d4a5df3ee0587
 
-PODFILE CHECKSUM: 2fb9beb17403addc4fb38df48d40d97fafae6341
+PODFILE CHECKSUM: b9662786d9898a9a1aa5d55e3068d75c14e4d1f2
 
 COCOAPODS: 1.5.3

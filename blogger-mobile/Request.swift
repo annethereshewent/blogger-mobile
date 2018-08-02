@@ -10,7 +10,7 @@ import UIKit
 
 class Request {
     
-    static func post(_ url: String, _ postParams: [String: String], callback: @escaping ([String: Any]) -> Void) -> Void {
+    static func post(_ url: String, _ postParams: [String: Any], callback: @escaping ([String: Any]) -> Void) -> Void {
         Request.request(url, "POST", postParams) { (json) in
             callback(json)
         }
@@ -22,7 +22,7 @@ class Request {
         }
     }
     
-    private static func request(_ url_str: String, _ methodType: String = "GET", _ postParams: [String: String] = [:], callback: @escaping ([String: Any]) -> Void) -> Void {
+    private static func request(_ url_str: String, _ methodType: String = "GET", _ postParams: [String: Any] = [:], callback: @escaping ([String: Any]) -> Void) -> Void {
         
         print("Making request at \(url_str)")
         

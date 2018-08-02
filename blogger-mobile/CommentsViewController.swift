@@ -8,9 +8,9 @@
 
 import UIKit
 
-class CommentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CommentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
-    var comments: [Comment]! = nil
+    var comments: [Comment]! = []
     var post: Post! = nil
     var user: User! = nil
     
@@ -20,17 +20,28 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var postView: UITableView!
     @IBOutlet weak var commentsView: UITableView!
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var commentButton: UIButton!
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         // Do any additional setup after loading the view.
+        
+        textView.layer.borderWidth = 1.0
+        textView.layer.borderColor = UIColor.black.cgColor
+        textView.layer.cornerRadius = 15
+        
+        textView.addDoneOnKeyboardWithTarget(self, action: #selector(self.doneAction(_:)), shouldShowPlaceholder: true)
+        
+        textView.delegate = self
+        
         loading.isHidden = false
         loading.startAnimating()
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
         
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.hideKeyboardWhenTappedAround()
         
         
         if (post != nil) {
@@ -71,6 +82,40 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
     }
+    
+    
+    @IBAction func commentAction(_ sender: Any) {
+        let postData: [String: Any] = [
+            "token": user.token,
+            "comment": self.textView!.text!,
+            "parent": 0,
+            "pid": self.post.id,
+            "indentLevel": 0
+        ]
+        
+        self.sendCommentRequest(postData)
+        
+        textView.text = ""
+    }
+    
+    @objc func doneAction(_ sender: UITextView) {
+        self.view.endEditing(true)
+        commentButton.sendActions(for: .touchUpInside)
+    }
+    
+    func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
+        var frame = textView.frame
+        frame.size.height = textView.contentSize.height
+        textView.frame = frame
+        
+        commentButton.frame.size.height = textView.contentSize.height
+        //self.frame.size.height = textView.contentSize.height > self.current_size ? self.frame.size.height+textView.contentSize.height  : self.frame.size.height-textView.contentSize.height
+        
+        
+        //self.current_size = textView.contentSize.height
+        
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -171,13 +216,24 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
             cell.username.sizeToFit()
             cell.comment.sizeToFit()
             
+            cell.textView.layer.borderWidth = 1.0
+            cell.textView.layer.borderColor = UIColor.gray.cgColor
+            cell.textView.layer.cornerRadius = 15.0
+            
+            
+            //cell.textView.translatesAutoresizingMaskIntoConstraints = false
+            //cell.textView.isScrollEnabled = false
+            //cell.textView.delegate = self
+            
+            
+            
 //            cell.replyButton.frame.origin.x = cell.replyButton.frame.origin.x + (CGFloat(cell.indentationLevel)*cell.indentationWidth)
 //            cell.comment.frame.origin.x = cell.comment.frame.origin.x + (CGFloat(cell.indentationLevel)*cell.indentationWidth)
 //            cell.username.frame.origin.x = cell.username.frame.origin.x + (CGFloat(cell.indentationLevel)*cell.indentationWidth)
             cell.username_leading_constraint.constant = CGFloat(cell.indentationLevel)*cell.indentationWidth
             
             
-            cell.replyButton.tag = self.comments[indexPath.row].id
+            cell.replyButton.tag = indexPath.row
             cell.replyButton.addTarget(self, action: #selector(CommentsViewController.replyAction), for: .touchUpInside)
             
             
@@ -234,9 +290,65 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
     }
+
+    func sendCommentRequest(_ postData: [String: Any]) {
+        Request.post("\(BaseParams.url)/api/post_comment", postData) { json in
+            let success = json["success"] as! Bool
+            if (success) {
+                print("dumping the contents of json")
+                dump(json["comment"])
+                let comment = Comment(json["comment"] as! [String: Any])
+                
+                print("dumping the contents of comment")
+                dump(comment)
+                
+                if (comment.parent == 0) {
+                    self.comments.append(comment)
+                    
+                    print("current comment count is: \(self.comments.count)")
+                    DispatchQueue.main.async {
+                        self.commentsView.reloadData()
+                    }
+                }
+                else {
+                    for (index, element) in self.comments.enumerated() {
+                        if (element.id == comment.parent) {
+                            if ((index+1) < self.comments.count) {
+                                self.comments.insert(comment, at:index+1)
+                            }
+                            else {
+                                self.comments.append(comment)
+                            }
+                            
+                            DispatchQueue.main.async {
+                                self.commentsView.reloadData()
+                            }
+                            break
+                        }
+                    }
+                }
+                
+                
+            }
+            
+        }
+    }
     
     @objc func replyAction(sender: UIButton) {
-        print("you clicked on the reply button for comment \(sender.tag)")
+        print("you clicked on the reply button for comment \(self.comments[sender.tag].id)")
+        let cell: CommentTableViewCell = self.commentsView.cellForRow(at: IndexPath(row: sender.tag, section: 0)) as! CommentTableViewCell
+        
+        let postData: [String: Any] = [
+            "token": user.token,
+            "comment": cell.textView!.text!,
+            "parent": self.comments[sender.tag].id,
+            "pid": self.post.id,
+            "indentLevel": self.comments[sender.tag].indentLevel+1
+        ]
+
+        self.sendCommentRequest(postData)
+        
+        cell.textView!.text = ""
         
     }
     
@@ -253,5 +365,4 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         }
        
     }
-
 }

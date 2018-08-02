@@ -11,16 +11,27 @@ import UIKit
 class NewPostViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var submitButton: UIButton!
     
     var user: User? = nil;
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
         self.hideKeyboardWhenTappedAround()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         activityIndicator.isHidden = true
-
-        // Do any additional setup after loading the view.
+        textView.layer.cornerRadius = 15
+        textView.layer.borderWidth = 1.0
+        textView.layer.borderColor = UIColor.black.cgColor
+        textView.addDoneOnKeyboardWithTarget(self, action: #selector(self.doneAction(_:)), shouldShowPlaceholder: true)
+        
+    }
+    
+    @objc func doneAction(_ sender: UITextView) {
+        self.view.endEditing(true)
+        submitButton.sendActions(for: .touchUpInside)
+        
     }
 
     @IBAction func newPostSubmit(_ sender: Any) {
