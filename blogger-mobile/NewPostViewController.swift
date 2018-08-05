@@ -40,52 +40,58 @@ class NewPostViewController: UIViewController {
         
         let post = "<p>\(self.textView!.text!.replacingOccurrences(of: "\n", with: "<br>"))</p>"
         
-        let postParams = [
-            "token": self.user!.token,
-            "post": post
-        ]
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
-        Request.post(url, postParams) { (jsonData) in
-            let success = jsonData["success"] as! Bool
-
-            print(success ? "success!" : "failed to create post")
+        if let user = self.user {
+            let postParams = [
+                "post": post
+            ]
             
-            //go back to posts controller ("VerticalViewController")
+            let headers = [
+                "Authorization": user.token
+            ]
             
-            let vc = storyboard.instantiateViewController(withIdentifier: "DashboardViewController") as! DashboardViewController
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            vc.user = self.user!
-    
-            BaseParams.fetchPostJson(token: self.user!.token) { (json) in
-                let success = json["success"] as! Bool
-                if (success) {
-                    vc.posts = Post.parseJson(json_posts: json["posts"] as! [Any])
-                    
-                    DispatchQueue.main.sync {
-                        self.activityIndicator.stopAnimating()
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                }
-                else {
-                    if let message = json["message"] as! String? {
-                        print(message)
-                        if (message == "invalid_token") {
-                            BaseParams.keychain["token"] = nil
-                            
-                            let vc = storyboard.instantiateViewController(withIdentifier: "ViewController")
-                            
+            activityIndicator.isHidden = false
+            activityIndicator.startAnimating()
+            Request.post(url, postParams, headers) { (jsonData) in
+                let success = jsonData["success"] as! Bool
+                
+                print(success ? "success!" : "failed to create post")
+                
+                //go back to posts controller ("VerticalViewController")
+                
+                let vc = storyboard.instantiateViewController(withIdentifier: "DashboardViewController") as! DashboardViewController
+                
+                vc.user = self.user!
+                
+                BaseParams.fetchPostJson(token: user.token) { (json) in
+                    let success = json["success"] as! Bool
+                    if (success) {
+                        vc.posts = Post.parseJson(json_posts: json["posts"] as! [Any])
+                        
+                        DispatchQueue.main.sync {
+                            self.activityIndicator.stopAnimating()
                             self.navigationController?.pushViewController(vc, animated: true)
                         }
                     }
+                    else {
+                        if let message = json["message"] as! String? {
+                            print(message)
+                            if (message == "invalid_token") {
+                                BaseParams.keychain["token"] = nil
+                                
+                                let vc = storyboard.instantiateViewController(withIdentifier: "ViewController")
+                                
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            }
+                        }
+                    }
+                    
                 }
                 
             }
-            
         }
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

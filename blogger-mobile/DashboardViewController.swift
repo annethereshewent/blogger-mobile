@@ -206,19 +206,24 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         self.navigationController?.pushViewController(vc, animated: true)
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.section + 1 == self.posts!.count {
-            Request.get("\(BaseParams.url)/api/fetch_posts/\(page)?token=\(user!.token)") { json in
-                let success = json["success"] as! Bool
-                if (success) {
-                    let new_posts = Post.parseJson(json_posts: json["posts"] as! [Any])
-                    if let posts = self.posts {
-                        self.posts = posts + new_posts
-                        self.tableView.reloadData()
-                        self.page += 1
+        if indexPath.section + 1 == self.posts!.count && self.posts!.count >= 15 {
+            if let user = self.user {
+                Request.get("\(BaseParams.url)/api/fetch_posts/\(page)", ["Authorization": user.token]) { json in
+                    let success = json["success"] as! Bool
+                    if (success) {
+                        let new_posts = Post.parseJson(json_posts: json["posts"] as! [Any])
+                        if let posts = self.posts {
+                            self.posts = posts + new_posts
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                            self.page += 1
+                        }
+                        
                     }
-                    
                 }
             }
+            
         }
     }
 }

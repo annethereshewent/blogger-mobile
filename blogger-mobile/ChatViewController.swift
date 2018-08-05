@@ -95,22 +95,6 @@ class ChatViewController: JSQMessagesViewController {
         return JSQPhotoMediaItem()
     }
     
-    func unescapeHtml(_ message: String) -> String {
-        let entityMap = [
-            "&amp;": "&",
-            "&lt;": "<",
-            "&gt;": ">",
-            "&quot;": "\"",
-            "&#39;": "'",
-            "&#x2F;": "/",
-            "&#x60;": "`",
-            "&#x3D;": "=",
-        ]
-        
-        return ""
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let user = user {
@@ -130,7 +114,7 @@ class ChatViewController: JSQMessagesViewController {
                 let from = data["from"] as! String
                 let content = data["content"] as! String
                 
-                if let message = JSQMessage(senderId: String(fromid), displayName: from, text: content) {
+                if let message = JSQMessage(senderId: String(fromid), displayName: from, text: content.stringByDecodingHTMLEntities) {
                     self.messages.append(message)
                 }
                 
@@ -170,7 +154,7 @@ class ChatViewController: JSQMessagesViewController {
                             }
                         }
                         else {
-                            if let message = JSQMessage(senderId: String(self.friend!.user_id), displayName: self.friend!.username, text: message) {
+                            if let message = JSQMessage(senderId: String(self.friend!.user_id), displayName: self.friend!.username, text: message.stringByDecodingHTMLEntities) {
                                 self.messages.append(message)
                             }
                         }
@@ -182,7 +166,7 @@ class ChatViewController: JSQMessagesViewController {
                             }
                         }
                         else {
-                            if let message = JSQMessage(senderId: String(user.user_id), displayName: user.username, text: message) {
+                            if let message = JSQMessage(senderId: String(user.user_id), displayName: user.username, text: message.stringByDecodingHTMLEntities) {
                                 self.messages.append(message)
                             }
                         }

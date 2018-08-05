@@ -292,7 +292,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func sendCommentRequest(_ postData: [String: Any]) {
-        Request.post("\(BaseParams.url)/api/post_comment", postData) { json in
+        Request.post("\(BaseParams.url)/api/post_comment", postData, ["Authorization": user.token]) { json in
             let success = json["success"] as! Bool
             if (success) {
                 print("dumping the contents of json")
@@ -339,7 +339,6 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         let cell: CommentTableViewCell = self.commentsView.cellForRow(at: IndexPath(row: sender.tag, section: 0)) as! CommentTableViewCell
         
         let postData: [String: Any] = [
-            "token": user.token,
             "comment": cell.textView!.text!,
             "parent": self.comments[sender.tag].id,
             "pid": self.post.id,

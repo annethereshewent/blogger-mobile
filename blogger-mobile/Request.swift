@@ -10,19 +10,19 @@ import UIKit
 
 class Request {
     
-    static func post(_ url: String, _ postParams: [String: Any], callback: @escaping ([String: Any]) -> Void) -> Void {
-        Request.request(url, "POST", postParams) { (json) in
+    static func post(_ url: String, _ postParams: [String: Any], _ headers: [String: String] = [:], callback: @escaping ([String: Any]) -> Void) -> Void {
+        Request.request(url, "POST", postParams, headers) { (json) in
             callback(json)
         }
     }
     
-    static func get(_ url: String, callback: @escaping ([String: Any]) -> Void) -> Void {
-        request(url) { (json) in
+    static func get(_ url: String, _ headers: [String: String] = [:], callback: @escaping ([String: Any]) -> Void) -> Void {
+        request(url, "GET", [:], headers) { (json) in
             callback(json)
         }
     }
     
-    private static func request(_ url_str: String, _ methodType: String = "GET", _ postParams: [String: Any] = [:], callback: @escaping ([String: Any]) -> Void) -> Void {
+    private static func request(_ url_str: String, _ methodType: String = "GET", _ postParams: [String: Any] = [:], _ headers: [String: String] = [:], callback: @escaping ([String: Any]) -> Void) -> Void {
         
         print("Making request at \(url_str)")
         
@@ -46,6 +46,10 @@ class Request {
             }
             
             request.httpBody = postParamsStr.data(using: .utf8)
+        }
+        
+        for (attr, value) in headers {
+            request.addValue(value, forHTTPHeaderField: attr)
         }
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
