@@ -86,7 +86,7 @@ class ChatListViewController: UITableViewController {
             
             socket.connect()
         
-            Request.get("\(BaseParams.url)/api/fetch_friends?token=\(user.token)") { (json) in
+            Request.get("\(BaseParams.url)/api/fetch_friends", ["Authorization": user.token]) { (json) in
                 self.friends = []
                 for friend in json["friends"] as! [Any] {
                     self.friends!.append(Friend(json: friend as! [String: Any]))
